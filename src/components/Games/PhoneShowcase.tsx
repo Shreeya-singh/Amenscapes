@@ -17,7 +17,7 @@ export type PhoneShot = {
 
 const START = 1;
 
-const CARD = { w: 320, h: 700, bezel: 13 } as const;
+const CARD = { w: 350, h: 700, bezel: 13 } as const;
 
 /** Horizontal drag (px) that equals exactly one card step. */
 const SPACING = 286;
