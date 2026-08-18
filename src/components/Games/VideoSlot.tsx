@@ -1,18 +1,25 @@
 import type { ReactNode } from "react";
 
 type VideoSlotProps = {
-  /** `/videos/foo.mp4` or a Wistia/YouTube/Vimeo embed URL. Leave empty for the placeholder. */
+  /** Image (`/cover.jpg`) or video (`/videos/foo.mp4`) URL. Leave empty for the placeholder. */
   src?: string;
   poster?: string;
   title: string;
   children?: ReactNode;
 };
 
-function isFileSrc(src: string) {
+function isImageSrc(src: string) {
   return (
-    src.startsWith("/") ||
+    src.startsWith("data:image/") ||
+    /\.(jpe?g|png|gif|webp|avif|svg|bmp|ico)(\?|$)/i.test(src)
+  );
+}
+
+function isVideoSrc(src: string) {
+  return (
     src.startsWith("blob:") ||
-    /\.(mp4|webm|ogg|mov)(\?|$)/i.test(src)
+    src.startsWith("data:video/") ||
+    /\.(mp4|webm|ogg|mov|m4v)(\?|$)/i.test(src)
   );
 }
 
@@ -30,27 +37,23 @@ export default function VideoSlot({
         <div className="absolute inset-0 size-full [&_iframe]:size-full [&_video]:size-full">
           {children}
         </div>
-      ) : media ? (
-        isFileSrc(media) ? (
-          <video
-            className="absolute inset-0 size-full object-cover"
-            src={media}
-            poster={poster}
-            controls
-            playsInline
-            preload="metadata"
-          >
-            Your browser does not support the video tag.
-          </video>
-        ) : (
-          <iframe
-            className="absolute inset-0 size-full border-0"
-            src={media}
-            title={title}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-          />
-        )
+      ) : media && isImageSrc(media) ? (
+        <img
+          src={media}
+          alt={title}
+          className="absolute inset-0 size-full object-cover"
+        />
+      ) : media && isVideoSrc(media) ? (
+        <video
+          className="absolute inset-0 size-full object-cover"
+          src={media}
+          poster={poster}
+          controls
+          playsInline
+          preload="metadata"
+        >
+          Your browser does not support the video tag.
+        </video>
       ) : (
         <div className="absolute inset-0 grid place-items-center bg-[linear-gradient(180deg,#9fd4f5_0%,#b7e08a_70%,#7ec85a_100%)]">
           <span

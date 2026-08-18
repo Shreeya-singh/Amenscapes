@@ -1,5 +1,7 @@
 import VideoSlot from "@/components/Games/VideoSlot";
-import PhoneShowcase from "@/components/Games/PhoneShowcase";
+import PhoneShowcase, {
+  type PhoneShot,
+} from "@/components/Games/PhoneShowcase";
 
 export type GameSectionProps = {
   /** Anchor used by the navbar links. */
@@ -7,6 +9,8 @@ export type GameSectionProps = {
   title: string;
   /** `/videos/foo.mp4` or a Wistia/YouTube embed URL. */
   videoSrc?: string;
+  /** Portrait screenshots for the phone carousel. */
+  phoneImages: PhoneShot[];
   /** `light` = white surface + blue type, `blue` = brand surface + white type. */
   tone?: "light" | "blue";
 };
@@ -15,6 +19,7 @@ export default function GameSection({
   id,
   title,
   videoSrc = "",
+  phoneImages,
   tone = "light",
 }: GameSectionProps) {
   const onBlue = tone === "blue";
@@ -38,7 +43,7 @@ export default function GameSection({
         <VideoSlot src={videoSrc} title={`${title} gameplay`} />
       </div>
 
-      <PhoneShowcase />
+      <PhoneShowcase images={phoneImages} label={`${title} screens`} />
     </section>
   );
 }
