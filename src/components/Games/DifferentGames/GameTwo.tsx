@@ -1,26 +1,26 @@
 import GameSection from "@/components/Games/GameSection";
 
-/** Paste `/videos/game2.mp4` or a Wistia/YouTube embed URL. */
+/** Paste `/videos/Bent-o-Box.mp4` or a Wistia/YouTube embed URL. */
 const VIDEO_SRC = "";
 
 export default function GameTwo() {
   return (
     <GameSection
-      id="game2"
-      title="Game2 🎮🧩"
-      videoSrc="/Amenscapes/Game2_Video.jpg"
+      id="Bent-o-Box"
+      title="Bent-o-Box 🎮🧩"
+      videoSrc="/Amenscapes/Bent-o-Box_Video.jpg"
       phoneImages={[
         {
-          src: "/Amenscapes/Game2_Phone1.jpg",
-          alt: "Game2 Last Supper screen",
+          src: "/Amenscapes/Bent-o-Box_Phone1.jpg",
+          alt: "Bent-o-Box Last Supper screen",
         },
         {
-          src: "/Amenscapes/Game2_Phone2.jpg",
-          alt: "Game2 chalice and bread screen",
+          src: "/Amenscapes/Bent-o-Box_Phone2.jpg",
+          alt: "Bent-o-Box chalice and bread screen",
         },
         {
-          src: "/Amenscapes/Game2_Phone3.jpg",
-          alt: "Game2 Jesus puzzle screen",
+          src: "/Amenscapes/Bent-o-Box_Phone3.jpg",
+          alt: "Bent-o-Box Jesus puzzle screen",
         },
       ]}
       tone="blue"

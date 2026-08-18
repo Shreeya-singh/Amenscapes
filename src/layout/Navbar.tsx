@@ -7,7 +7,7 @@ import Link from "next/link";
 const links = [
   { href: "/", label: "Home", id: "" },
   { href: "/#bible-word-a-light", label: "BibleWordALight", id: "bible-word-a-light" },
-  { href: "/#game2", label: "Game2", id: "game2" },
+  { href: "/#Bent-o-Box", label: "Bent-o-Box", id: "Bent-o-Box" },
 ] as const;
 
 export default function Navbar() {

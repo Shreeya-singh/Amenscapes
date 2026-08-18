@@ -16,9 +16,9 @@ const games: Game[] = [
     href: "#bible-word-a-light",
   },
   {
-    name: "Game2",
-    src: "/Amenscapes/Game2.jpg",
-    href: "#game2",
+    name: "Bent-o-Box",
+    src: "/Amenscapes/Bent-o-Box.jpg",
+    href: "#Bent-o-Box",
   },
 ];
 
