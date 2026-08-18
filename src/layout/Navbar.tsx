@@ -121,6 +121,17 @@ export default function Navbar() {
           })}
         </ul>
 
+        <Link
+          href="/signup"
+          className={`hidden rounded-full border-2 border-white px-5 py-2 text-[14px] font-bold text-white outline-none transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-white/80 md:inline-flex
+          ${scrolled
+            ? "pointer-events-none -translate-y-1 scale-95 opacity-0"
+            : "translate-y-0 scale-100 opacity-100 hover:scale-[1.04]"
+          }`}
+        >
+          Sign up 
+        </Link>
+
         {/* Mobile toggle */}
         <button
           type="button"
@@ -154,7 +165,7 @@ export default function Navbar() {
       <div
         id="mobile-nav"
         className={`overflow-hidden border-t border-white/20 bg-brand/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
-          open ? "max-h-72 opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <ul className="mx-auto flex w-full max-w-[1100px] flex-col gap-1 px-6 py-3">
@@ -177,6 +188,15 @@ export default function Navbar() {
               </li>
             );
           })}
+          <li>
+            <Link
+              href="/signup"
+              onClick={() => setOpen(false)}
+              className="mt-1 block rounded-xl bg-white px-4 py-3 text-center text-[16px] font-bold text-brand-deep"
+            >
+              Sign up with email
+            </Link>
+          </li>
         </ul>
       </div>
     </header>

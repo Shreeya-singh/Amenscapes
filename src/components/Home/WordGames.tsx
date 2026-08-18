@@ -93,7 +93,7 @@ function GameCard({ name, src, href }: Game) {
 
 export default function WordGames() {
   return (
-    <section className="relative flex min-h-[calc(100svh-80px)] flex-col bg-brand px-4 pt-10 pb-24 sm:px-6 sm:pt-16 sm:pb-16">
+    <section className="relative flex min-h-[calc(100svh-80px)] flex-col bg-brand px-4 pt-6 pb-32 sm:px-6 sm:pt-16 sm:pb-24">
       <div className="mx-auto flex w-full max-w-[1100px] flex-1 flex-col items-center">
         <div className="flex w-full flex-wrap items-start justify-center gap-10 pt-2 sm:gap-14 sm:pt-6 lg:gap-16">
           {games.map((game) => (
@@ -104,6 +104,13 @@ export default function WordGames() {
         <h1 className="mt-10 max-w-[700px] text-center text-[30px] leading-tight font-bold text-balance text-black sm:mt-14 sm:text-[44px] lg:mt-16 lg:text-[60px]">
           Play the most Unique Word Games! 😃
         </h1>
+
+        <Link
+          href="/signup"
+          className="mt-4 mb-10 inline-flex items-center justify-center rounded-full bg-black px-8 py-3.5 text-[16px] font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition-transform hover:scale-[1.03] sm:mt-8 sm:mb-0 sm:text-[18px]"
+        >
+          Sign up with email
+        </Link>
       </div>
 
       <button
@@ -112,7 +119,7 @@ export default function WordGames() {
         onClick={() =>
           window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
         }
-        className="absolute bottom-6 left-1/2 flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-white/25 text-white transition-colors hover:bg-white/40 sm:bottom-12"
+        className="absolute bottom-1 left-1/2 flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-white/25 text-white transition-colors hover:bg-white/40 sm:bottom-12"
       >
         <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden>
           <path
