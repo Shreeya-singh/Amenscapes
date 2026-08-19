@@ -14,6 +14,15 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -79,7 +88,7 @@ export default function Navbar() {
           tabIndex={scrolled ? -1 : 0}
           aria-hidden={scrolled || undefined}
           className={`flex shrink-0 items-center rounded-lg outline-none transition-all duration-300 ease-out focus-visible:ring-2 focus-visible:ring-white/80 ${
-            scrolled
+            scrolled && !isMobile
               ? "pointer-events-none -translate-y-1 scale-95 opacity-0"
               : "translate-y-0 scale-100 opacity-100 hover:scale-[1.04]"
           }`}
@@ -164,9 +173,9 @@ export default function Navbar() {
       {/* Mobile panel */}
       <div
         id="mobile-nav"
-        className={`overflow-hidden border-t border-white/20 bg-brand/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden ${
-          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-        }`}
+        className={`overflow-hidden border-t border-white/20 bg-brand/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden 
+          ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          `}
       >
         <ul className="mx-auto flex w-full max-w-[1100px] flex-col gap-1 px-6 py-3">
           {links.map((link) => {
