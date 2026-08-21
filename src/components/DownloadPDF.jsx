@@ -39,6 +39,7 @@ export default function DownloadPDF({ status, cancel }) {
         </svg>
         Download PDF
       </a>
+      
     </div>
   );
 }
