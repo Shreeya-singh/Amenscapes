@@ -36,7 +36,7 @@ export default function NewsletterSignup() {
   return (
     <div id="signup" className="mt-4 mb-10 w-full max-w-[520px] scroll-mt-24 sm:mt-8 sm:mb-0">
       {status === "success" || status === "alreadySubscribed" ? (
-        <DownloadPDF status={status} />
+        <DownloadPDF status={status} cancel={() => setStatus("idle")} />
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
           <div className="flex w-full items-center rounded-full bg-white p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
