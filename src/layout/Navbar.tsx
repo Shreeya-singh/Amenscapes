@@ -131,7 +131,7 @@ export default function Navbar() {
         </ul>
 
         <Link
-          href="/signup"
+          href="/#signup"
           className={`hidden rounded-full border-2 border-white px-5 py-2 text-[14px] font-bold text-white outline-none transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-white/80 md:inline-flex
           ${scrolled
             ? "pointer-events-none -translate-y-1 scale-95 opacity-0"
@@ -199,7 +199,7 @@ export default function Navbar() {
           })}
           <li>
             <Link
-              href="/signup"
+              href="/#signup"
               onClick={() => setOpen(false)}
               className="mt-1 block rounded-xl bg-white px-4 py-3 text-center text-[16px] font-bold text-brand-deep"
             >

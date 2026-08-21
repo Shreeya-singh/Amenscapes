@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import NewsletterSignup from "@/components/NewLetterSignup";
 
 type Game = {
   name: string;
@@ -105,12 +106,7 @@ export default function WordGames() {
           Play the most Unique Word Games! 😃
         </h1>
 
-        <Link
-          href="/signup"
-          className="mt-4 mb-10 inline-flex items-center justify-center rounded-full bg-black px-8 py-3.5 text-[16px] font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition-transform hover:scale-[1.03] sm:mt-8 sm:mb-0 sm:text-[18px]"
-        >
-          Sign up with email
-        </Link>
+        <NewsletterSignup />
       </div>
 
       <button
