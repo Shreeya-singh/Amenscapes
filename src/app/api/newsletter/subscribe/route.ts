@@ -13,6 +13,7 @@ export async function POST(req: NextRequest) {
 
     const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
     const apiKey = process.env.BEEHIIV_API_KEY;
+    const encodeEmail = encodeURIComponent(email);
 
     if (!publicationId || !apiKey) {
       console.error(
@@ -24,6 +25,33 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // first check if mail is already subscribed
+    const existingRes = await fetch(
+      `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions/by_email/${encodeEmail}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${apiKey}`,
+        },
+      }
+    );
+    if(existingRes.ok) {
+      const existingResponse = await existingRes.json();
+      const status = existingResponse.data.status as string | undefined;
+
+      if(status === "active" || status === "pending") {
+        return NextResponse.json(
+          { alreadySubscribed: true, status },
+          { status: 409 },
+        );
+      }
+    }
+
+    if (existingRes.status !== 404 && existingRes.ok === false) {
+      const data = await existingRes.json().catch(() => null);
+      return NextResponse.json({ error: data }, { status: existingRes.status });
+    }
+    
     const response = await fetch(
       `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions`,
       {

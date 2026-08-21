@@ -1,8 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import DownloadPDF from "./DownloadPDF";
 
-type Status = "idle" | "subscribing" | "success" | "error";
+type Status = "idle" | "subscribing" | "success" | "error" | "alreadySubscribed";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
@@ -22,7 +23,9 @@ export default function NewsletterSignup() {
       if (response.ok) {
         setStatus("success");
         setEmail("");
-      } else {
+      } else if(response.status === 409) {
+        setStatus("alreadySubscribed");
+      }else {
         setStatus("error");
       }
     } catch {
@@ -32,10 +35,8 @@ export default function NewsletterSignup() {
 
   return (
     <div id="signup" className="mt-4 mb-10 w-full max-w-[520px] scroll-mt-24 sm:mt-8 sm:mb-0">
-      {status === "success" ? (
-        <p className="rounded-full bg-white px-6 py-4 text-center text-[15px] font-bold text-black shadow-[0_8px_24px_rgba(0,0,0,0.12)]">
-          You&apos;re in — check your email to confirm.
-        </p>
+      {status === "success" || status === "alreadySubscribed" ? (
+        <DownloadPDF status={status} />
       ) : (
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
           <div className="flex w-full items-center rounded-full bg-white p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
