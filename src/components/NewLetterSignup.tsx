@@ -1,9 +1,11 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { z } from "zod";
 import DownloadPDF from "./DownloadPDF";
 
-type Status = "idle" | "subscribing" | "success" | "error" | "alreadySubscribed";
+
+type Status = "idle" | "subscribing" | "success" | "error" | "invalid" | "alreadySubscribed";
 
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
@@ -11,13 +13,20 @@ export default function NewsletterSignup() {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+
+    const parsed = z.email().safeParse(email.trim());
+    if (!parsed.success) {
+      setStatus("invalid");
+      return;
+    }
+
     setStatus("subscribing");
 
     try {
       const response = await fetch("/api/newsletter/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email: parsed.data }),
       });
 
       if (response.ok) {
@@ -38,7 +47,7 @@ export default function NewsletterSignup() {
       {status === "success" || status === "alreadySubscribed" ? (
         <DownloadPDF status={status} cancel={() => setStatus("idle")} />
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
+        <form noValidate onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
           <div className="flex w-full items-center rounded-full bg-white p-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.16)]">
             <label htmlFor="newsletter-email" className="sr-only">
               Email
@@ -70,9 +79,8 @@ export default function NewsletterSignup() {
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
-                if (status === "error") setStatus("idle");
+                if (status === "error" || status === "invalid") setStatus("idle");
               }}
-              required
               autoComplete="email"
               className="min-w-0 flex-1 bg-transparent px-3 py-3 text-[15px] text-black outline-none placeholder:text-[#9aa3af] sm:text-[16px]"
             />
@@ -84,6 +92,11 @@ export default function NewsletterSignup() {
               {status === "subscribing" ? "..." : "Sign up"}
             </button>
           </div>
+          {status === "invalid" && (
+            <p className="text-center text-[13px] font-medium text-red-700">
+              Enter a valid email.
+            </p>
+          )}
           {status === "error" && (
             <p className="text-center text-[13px] font-medium text-red-700">
               Something went wrong. Please try again.

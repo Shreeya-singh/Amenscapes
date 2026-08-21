@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
+import { newsletterSubscribeSchema } from "@/lib/newsletter";
 
 export async function POST(req: NextRequest) {
   try {
-    const { email } = await req.json();
-
-    if (!email) {
-      return NextResponse.json(
-        { error: "Email is required" },
-        { status: 400 }
-      );
+    const parsed = newsletterSubscribeSchema.safeParse(await req.json());
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Invalid email" }, { status: 400 });
     }
+    const { email } = parsed.data;
 
     const publicationId = process.env.BEEHIIV_PUBLICATION_ID;
     const apiKey = process.env.BEEHIIV_API_KEY;
