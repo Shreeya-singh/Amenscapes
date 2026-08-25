@@ -56,30 +56,33 @@ export default function Footer() {
     <footer className="mt-auto border-t border-ink/10 bg-cream">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 sm:py-14 lg:grid-cols-[auto_minmax(0,15rem)_repeat(3,minmax(0,1fr))_auto] lg:gap-8">
         {/* The stacked lockup — mark over wordmark, as the brand sheet has it. */}
-        <Link
-          href="/"
-          className="flex flex-col items-center gap-2 self-start rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ink/40 sm:items-start"
-        >
-          <Image
-            src="/Amenscapes/LogoMark.png"
-            alt=""
-            width={198}
-            height={298}
-            className="h-11 w-auto object-contain"
-          />
-          <Image
-            src="/Amenscapes/LogoWordmark.png"
-            alt="Amenscapes"
-            width={649}
-            height={88}
-            className="h-[15px] w-auto object-contain"
-          />
-        </Link>
+        <div className="flex max-w-xs shrink-0 flex-col items-center gap-3 sm:items-start">
+          <Link
+            href="/"
+            className="flex flex-row items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ink/40 sm:items-end"
+          >
+            <Image
+              src="/Amenscapes/LogoMark.png"
+              alt=""
+              width={198}
+              height={298}
+              className="h-11 w-auto max-w-none object-contain"
+            />
+            <Image
+              src="/Amenscapes/LogoWordmark.png"
+              alt="Amenscapes"
+              width={649}
+              height={88}
+              sizes="160px"
+              className="h-auto w-[160px] max-w-none object-contain"
+            />
+          </Link>
 
-        <p className="text-center text-[16px] leading-relaxed font-medium text-ink/70 sm:text-left sm:text-[17px]">
-          Creating faith-filled puzzles and books that inspire hearts and minds
-          through God&apos;s Word.
-        </p>
+          <p className="text-center text-[16px] leading-relaxed font-medium text-ink/70 sm:text-left sm:text-[17px]">
+            Creating faith-filled puzzles and books that inspire hearts and
+            minds through God&apos;s Word.
+          </p>
+        </div>
 
         {COLUMNS.map((column) => (
           <nav key={column.heading} aria-label={column.heading}>

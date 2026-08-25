@@ -10,7 +10,7 @@ const links = [
   { href: "/", label: "Home", id: "" },
   { href: "/#wordalight", label: "WordaLight", id: "wordalight" },
   { href: "/#bentobox", label: "BentoBox", id: "bentobox" },
-  { href: "/#apparel", label: "Apparel", id: "apparel" },
+  { href: "/#t-shirt", label: "T-Shirts", id: "t-shirt" },
   { href: "/#About", label: "About", id: "About" },
 ] as const;
 
@@ -32,15 +32,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
   const [open, setOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const sync = () => setIsMobile(mq.matches);
-    sync();
-    mq.addEventListener("change", sync);
-    return () => mq.removeEventListener("change", sync);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -122,20 +113,14 @@ export default function Navbar() {
           scrolled ? "h-[68px]" : "h-[80px]"
         }`}
       >
-        {/* The logo fades away once you scroll, leaving the links on their own. */}
+        {/* Logo stays on desktop; hidden on mobile. */}
         <Link
           href="/"
-          tabIndex={scrolled ? -1 : 0}
-          aria-hidden={scrolled || undefined}
-          className={`flex shrink-0 items-center rounded-lg outline-none transition-all duration-300 ease-out focus-visible:ring-2 focus-visible:ring-ink/40 ${
-            scrolled && !isMobile
-              ? "pointer-events-none -translate-y-1 scale-95 opacity-0"
-              : "translate-y-0 scale-100 opacity-100 hover:scale-[1.04]"
-          }`}
+          className="hidden shrink-0 items-center rounded-lg outline-none transition-transform duration-300 ease-out hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-ink/40 md:flex"
         >
           {/* The source logo is a stacked lockup; the mark and wordmark are
               split so they sit on one line with the nav links. */}
-          <span className="flex items-center gap-2.5">
+          <span className="flex items-end gap-2">
             <Image
               src="/Amenscapes/LogoMark.png"
               alt=""
@@ -149,7 +134,8 @@ export default function Navbar() {
               alt="Amenscapes"
               width={649}
               height={88}
-              className="h-[18px] w-auto object-contain"
+              sizes="160px"
+              className="h-auto w-[160px] max-w-none object-contain"
               priority
             />
           </span>
@@ -202,7 +188,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="flex size-10 items-center justify-center rounded-xl text-ink outline-none transition-colors hover:bg-ink/5 focus-visible:ring-2 focus-visible:ring-ink/40 md:hidden"
+          className="ml-auto flex size-10 items-center justify-center rounded-xl text-ink outline-none transition-colors hover:bg-ink/5 focus-visible:ring-2 focus-visible:ring-ink/40 md:hidden"
         >
           <span className="relative block h-4 w-5">
             <span

@@ -11,7 +11,7 @@ const PHOTO = {
 
 export default function ApparelComingSoon() {
   return (
-    <section id="apparel" className="bg-cream-deep px-6 py-14 sm:py-20">
+    <section id="t-shirt" className="bg-cream-deep px-6 py-14 sm:py-20">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10">
         <div className="flex flex-col items-center text-center">
           <div className="flex items-center justify-center gap-3 sm:gap-4">
