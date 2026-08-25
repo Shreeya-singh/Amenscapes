@@ -6,8 +6,10 @@ import Link from "next/link";
 
 const links = [
   { href: "/", label: "Home", id: "" },
-  { href: "/#bible-word-a-light", label: "BibleWordALight", id: "bible-word-a-light" },
-  { href: "/#Bent-o-Box", label: "Bent-o-Box", id: "Bent-o-Box" },
+  { href: "/#bible-word-a-light", label: "WordaLight", id: "bible-word-a-light" },
+  { href: "/#Bent-o-Box", label: "BentoBox", id: "bent-o-box" },
+  { href: "/#T-Shirt", label: "T-Shirt", id: "T-Shirt" },
+  { href: "/#About", label: "About", id: "About" },
 ] as const;
 
 export default function Navbar() {
@@ -104,7 +106,7 @@ export default function Navbar() {
         </Link>
 
         {/* Desktop links — absolutely centred so the logo stays flush left. */}
-        <ul className="hidden items-center gap-1 md:absolute md:left-1/2 md:flex md:-translate-x-1/2">
+        <ul className="hidden items-center gap-1 md:flex">
           {links.map((link) => {
             const isActive = active === link.id;
             return (
@@ -130,7 +132,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        <Link
+        {/* <Link
           href="/#signup"
           className={`hidden rounded-full border-2 border-white px-5 py-2 text-[14px] font-bold text-white outline-none transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-white/80 md:inline-flex
           ${scrolled
@@ -139,7 +141,7 @@ export default function Navbar() {
           }`}
         >
           Sign up 
-        </Link>
+        </Link> */}
 
         {/* Mobile toggle */}
         <button
