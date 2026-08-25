@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BentoBoxComingSoon from "@/components/Home/BentoBoxComingSoon";
 
 export const metadata: Metadata = {
   title: "Bent-o-Box",
@@ -6,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function BentOBoxPage() {
-  return < />;
+  return <BentoBoxComingSoon />;
 }
