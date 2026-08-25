@@ -5,21 +5,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/**
- * `id` is the section each link points at on the home page. The game pages
- * are also their own routes, so those links carry both.
- */
+/** `id` is the home-page section each link scrolls to. */
 const links = [
   { href: "/", label: "Home", id: "" },
-  { href: "/wordalight", label: "WordaLight", id: "wordalight" },
-  { href: "/bent-o-box", label: "BentoBox", id: "bentobox" },
+  { href: "/#wordalight", label: "WordaLight", id: "wordalight" },
+  { href: "/#bentobox", label: "BentoBox", id: "bentobox" },
   { href: "/#apparel", label: "Apparel", id: "apparel" },
   { href: "/#About", label: "About", id: "About" },
 ] as const;
 
 /**
- * On the home page the underline follows the section in view; everywhere else
- * it matches on the path.
+ * On the home page the underline follows the section in view.
  */
 function isLinkActive(
   href: string,

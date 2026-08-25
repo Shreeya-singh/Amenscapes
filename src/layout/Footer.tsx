@@ -10,8 +10,8 @@ const COLUMNS = [
   {
     heading: "Shop",
     links: [
-      { label: "Wordalight", href: "/wordalight" },
-      { label: "Bentobox", href: "/bent-o-box" },
+      { label: "Wordalight", href: "/#wordalight" },
+      { label: "Bentobox", href: "/#bentobox" },
       { label: "T-Shirts", href: "/#apparel" },
     ],
   },

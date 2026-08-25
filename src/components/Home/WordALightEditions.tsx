@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { Flourish } from "@/components/ui/Ornaments";
 
 type Edition = {
@@ -29,10 +28,7 @@ const EDITIONS: Edition[] = [
 
 function EditionCard({ title, blurb, src, width, height }: Edition) {
   return (
-    <Link
-      href="/wordalight"
-      className="group flex flex-1 items-center justify-center gap-6 rounded-sm outline-none sm:gap-8 focus-visible:ring-2 focus-visible:ring-ink/40"
-    >
+    <div className="group flex flex-1 items-center justify-center gap-6 sm:gap-8">
       <div className="relative shrink-0">
         <Image
           src={src}
@@ -58,7 +54,7 @@ function EditionCard({ title, blurb, src, width, height }: Edition) {
           {blurb}
         </p>
       </div>
-    </Link>
+    </div>
   );
 }
 
