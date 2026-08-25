@@ -1,13 +1,15 @@
 import WordGames from "@/components/Home/WordGames";
-import BibleWordALight from "@/components/Games/DifferentGames/BibleWordALight";
-import GameTwo from "@/components/Games/DifferentGames/GameTwo";
+import WordALightEditions from "@/components/Home/WordALightEditions";
+import BentoBoxComingSoon from "@/components/Home/BentoBoxComingSoon";
+import ApparelComingSoon from "@/components/Home/ApparelComingSoon";
 
 export default function Page() {
   return (
     <>
       <WordGames />
-      <BibleWordALight />
-      <GameTwo />
+      <WordALightEditions />
+      <BentoBoxComingSoon />
+      <ApparelComingSoon />
     </>
   );
 }

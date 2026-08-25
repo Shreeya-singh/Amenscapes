@@ -15,7 +15,11 @@ const cormorant = Cormorant_Garamond({
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${cormorant.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
         {children}
       </body>

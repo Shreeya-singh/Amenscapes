@@ -8,8 +8,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
 }
 
 /* Site theme: blue + white. Use `brand` for surfaces, `brand-ink` for type. */
@@ -17,6 +17,15 @@
   --color-brand: #7aaff8;
   --color-brand-ink: #3b82f6;
   --color-brand-deep: #1d4ed8;
+}
+
+/* Editorial theme: warm paper + navy type + gold ornament. */
+@theme {
+  --color-cream: #faf7f1;
+  --color-cream-deep: #f1e9dc;
+  --color-ink: #1e3a6b;
+  --color-ink-deep: #152a50;
+  --color-gold: #c0954a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -29,5 +38,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-cormorant), sans-serif;
+  font-family: var(--font-cormorant), ui-serif, Georgia, serif;
 }
