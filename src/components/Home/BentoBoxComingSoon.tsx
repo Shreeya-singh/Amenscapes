@@ -63,7 +63,10 @@ export default function BentoBoxComingSoon() {
               width={spread.width}
               height={spread.height}
               sizes="(max-width: 1024px) 45vw, 300px"
-              className="h-[240px] w-auto shrink-0 rounded-[3px] shadow-[0_14px_40px_rgba(21,42,80,0.16)] sm:h-[320px] lg:h-[360px]"
+              /* Height-driven from sm up; below it the pair is sized off the
+                 viewport instead, because two 240px-tall spreads plus the gap
+                 are wider than a 320px screen and scrolled the page sideways. */
+              className="h-auto w-[42vw] shrink-0 rounded-[3px] shadow-[0_14px_40px_rgba(21,42,80,0.16)] sm:h-[320px] sm:w-auto lg:h-[360px]"
             />
           ))}
         </div>
