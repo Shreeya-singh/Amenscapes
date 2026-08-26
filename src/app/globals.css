@@ -46,6 +46,10 @@
   }
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
@@ -95,18 +99,6 @@ body {
   }
 }
 
-/* Below lg the band has no fixed ratio and the crop is tight enough to drag
-   the books under the copy, so a cream wash carries the contrast instead. */
-@media (width < 64rem) {
-  .word-games-background-Images {
-    background-image:
-      linear-gradient(
-        to bottom,
-        rgba(250, 247, 241, 0.9),
-        rgba(250, 247, 241, 0.78)
-      ),
-      url("/WordGames/HeroSectionOverlap.png"),
-      url("/WordGames/HeroSection.png");
-    background-position: center, left center, left center;
-  }
-}
+/* Below lg this layer is not rendered at all: the crop only ever caught bare
+   wall on a portrait band, so the mobile column stacks the photograph under
+   the copy as a real <Image> instead. See components/Home/WordGames.tsx. */

@@ -90,15 +90,31 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  // Close the mobile menu on Escape.
+  // Close the mobile menu on Escape, and hold the page still behind it.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
   }, [open]);
+
+  // A tap on a link the user is already on, or a resize up to the desktop
+  // layout, both leave the panel open with nothing to close it.
+  useEffect(() => setOpen(false), [pathname]);
+
+  useEffect(() => {
+    const query = window.matchMedia("(width >= 48rem)");
+    const close = () => query.matches && setOpen(false);
+    query.addEventListener("change", close);
+    return () => query.removeEventListener("change", close);
+  }, []);
 
   return (
     <header
@@ -109,31 +125,31 @@ export default function Navbar() {
       }`}
     >
       <nav
-        className={`relative mx-auto flex w-full max-w-8xl items-center justify-between px-6 transition-all duration-300 ${
-          scrolled ? "h-[68px]" : "h-[80px]"
+        className={`relative mx-auto flex w-full max-w-8xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:px-6 ${
+          scrolled ? "h-[60px] md:h-[68px]" : "h-[68px] md:h-[80px]"
         }`}
       >
         {/* Logo stays on desktop; hidden on mobile. */}
         <Link
           href="/"
-          className="hidden shrink-0 items-center rounded-lg outline-none transition-transform duration-300 ease-out hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-ink/40 md:flex"
+          className="flex shrink-0 items-center rounded-lg outline-none transition-transform duration-300 ease-out hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-ink/40"
         >
           {/* The source logo is a stacked lockup; the mark and wordmark are
               split so they sit on one line with the nav links. */}
           <span className="flex items-end gap-2">
             <Image
               src="/Navbar/NavbarLogo.png"
-              alt=""
-              width={198}
-              height={298}
-              className="h-10 w-auto object-contain"
+              alt="Amenscapes"
+              width={150}
+              height={40}
+              className="h-8 w-auto object-contain md:h-10"
               priority
             />
           </span>
         </Link>
 
         {/* Desktop links — absolutely centred so the logo stays flush left. */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-2 md:flex lg:gap-8">
           {links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
             return (
@@ -141,7 +157,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   aria-current={isActive ? "page" : undefined}
-                  className={`group relative block rounded-full px-4 py-2 text-[17px] font-medium outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-ink/40 ${
+                  className={`group relative block rounded-full px-3 py-2 text-[17px] font-medium whitespace-nowrap outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-ink/40 lg:px-4 ${
                     isActive
                       ? "text-ink"
                       : "text-ink/70 hover:bg-ink/5 hover:text-ink"
@@ -149,7 +165,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   <span
-                    className={`pointer-events-none absolute inset-x-4 -bottom-0.5 h-[2px] origin-left rounded-full bg-gold transition-transform duration-300 ${
+                    className={`pointer-events-none absolute inset-x-3 -bottom-0.5 h-[2px] lg:inset-x-4 origin-left rounded-full bg-gold transition-transform duration-300 ${
                       isActive
                         ? "scale-x-100"
                         : "scale-x-0 group-hover:scale-x-100"
@@ -179,7 +195,7 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="mobile-nav"
           aria-label={open ? "Close menu" : "Open menu"}
-          className="ml-auto flex size-10 items-center justify-center rounded-xl text-ink outline-none transition-colors hover:bg-ink/5 focus-visible:ring-2 focus-visible:ring-ink/40 md:hidden"
+          className="-mr-1 flex size-11 shrink-0 items-center justify-center rounded-xl text-ink outline-none transition-colors hover:bg-ink/5 focus-visible:ring-2 focus-visible:ring-ink/40 md:hidden"
         >
           <span className="relative block h-4 w-5">
             <span
@@ -204,11 +220,15 @@ export default function Navbar() {
       {/* Mobile panel */}
       <div
         id="mobile-nav"
-        className={`overflow-hidden border-t border-ink/10 bg-[#FBF8F2]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden
-          ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+        className={`border-t bg-[#FBF8F2]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden
+          ${
+            open
+              ? "max-h-[calc(100svh-60px)] overflow-y-auto border-ink/10 opacity-100"
+              : "max-h-0 overflow-hidden border-transparent opacity-0"
+          }
           `}
       >
-        <ul className="mx-auto flex w-full max-w-[1100px] flex-col gap-1 px-6 py-3">
+        <ul className="mx-auto flex w-full max-w-[1100px] flex-col gap-1 px-5 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
           {links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
             return (

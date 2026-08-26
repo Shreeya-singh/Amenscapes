@@ -1,15 +1,32 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { z } from "zod";
 import DownloadPDF from "./DownloadPDF";
 
 
 type Status = "idle" | "subscribing" | "success" | "error" | "invalid" | "alreadySubscribed";
 
+/* The field is one pill on every screen, so the prompt has to shorten rather
+   than the pill widen — the full sentence truncates to "Enter email address to
+   down…" under about 480px. Resolved after mount so the server and the first
+   client render agree on the long copy. */
+const PLACEHOLDER_FULL = "Enter email address to download sample puzzle";
+const PLACEHOLDER_SHORT = "Email address for a free puzzle";
+
 export default function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
+  const [placeholder, setPlaceholder] = useState(PLACEHOLDER_FULL);
+
+  useEffect(() => {
+    const query = window.matchMedia("(width < 40rem)");
+    const sync = () =>
+      setPlaceholder(query.matches ? PLACEHOLDER_SHORT : PLACEHOLDER_FULL);
+    sync();
+    query.addEventListener("change", sync);
+    return () => query.removeEventListener("change", sync);
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -43,7 +60,7 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div id="signup" className="mt-[1.6em] w-full max-w-[26em] scroll-mt-24">
+    <div id="signup" className="mt-[1.6em] w-full max-w-[24em] scroll-mt-28 sm:max-w-[26em]">
       {status === "success" || status === "alreadySubscribed" ? (
         <DownloadPDF status={status} cancel={() => setStatus("idle")} />
       ) : (
@@ -62,14 +79,14 @@ export default function NewsletterSignup() {
             <input
               id="newsletter-email"
               type="email"
-              placeholder="Enter email address to download sample puzzle"
+              placeholder={placeholder}
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (status === "error" || status === "invalid") setStatus("idle");
               }}
               autoComplete="email"
-              className="w-full truncate rounded-full bg-transparent px-[2.4em] py-[0.85em] text-center text-[0.95em] text-ink italic outline-none placeholder:text-ink/70"
+              className="w-full truncate rounded-full bg-transparent px-[1.4em] py-[0.95em] text-center text-[0.88em] text-ink italic outline-none placeholder:text-ink/70 sm:px-[2.4em] sm:py-[0.85em] sm:text-[0.95em]"
             />
             <button
               type="submit"
