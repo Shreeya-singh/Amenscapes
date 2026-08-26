@@ -10,6 +10,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-cormorant), ui-serif, Georgia, serif;
   --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+  --font-display: var(--font-playfair), ui-serif, Georgia, serif;
 }
 
 /* Site theme: blue + white. Use `brand` for surfaces, `brand-ink` for type. */
@@ -17,6 +18,16 @@
   --color-brand: #7aaff8;
   --color-brand-ink: #3b82f6;
   --color-brand-deep: #1d4ed8;
+}
+
+/* Tailwind stops at 7xl (80rem); the hero artwork runs wider than the navbar
+   measure it sits under. */
+@theme {
+  --container-8xl: 88rem;
+  --container-9xl: 96rem;
+  --container-10xl: 104rem;
+  --container-11xl: 112rem;
+  --container-12xl: 120rem;
 }
 
 /* Editorial theme: warm paper + navy type + gold ornament. */
@@ -39,4 +50,63 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+.word-games-background-Images {
+  /* The scrim is listed first so it paints over the photograph. Both layers
+     are the same 1440x760 frame and share one box, so `cover` crops them
+     identically and the wash stays registered to the books behind it. The
+     band's fixed ratio then pins the books to a constant 41% across, which is
+     what lets the copy be sized to clear them at every width. */
+  background-image:
+    url("/WordGames/HeroSectionOverlap.png"),
+    url("/WordGames/HeroSection.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* The crop ends on two hard vertical seams — against cream once the window is
+   wider than the band, against the screen edge below that. Feather both away
+   with an alpha mask so the photo dissolves into the page either way. The ramp
+   is stepped rather than a plain two-stop gradient because a linear one leaves
+   a visible corner where it meets full opacity; these stops approximate an
+   ease, so there is no edge to find. */
+@media (width >= 64rem) {
+  .word-games-background-Images {
+    --edge: 7rem;
+    -webkit-mask-image: var(--edge-fade);
+    mask-image: var(--edge-fade);
+    --edge-fade: linear-gradient(
+      to right,
+      transparent 0,
+      rgba(0, 0, 0, 0.14) calc(var(--edge) * 0.22),
+      rgba(0, 0, 0, 0.42) calc(var(--edge) * 0.45),
+      rgba(0, 0, 0, 0.72) calc(var(--edge) * 0.68),
+      rgba(0, 0, 0, 0.93) calc(var(--edge) * 0.86),
+      #000 var(--edge),
+      #000 calc(100% - var(--edge)),
+      rgba(0, 0, 0, 0.93) calc(100% - var(--edge) * 0.86),
+      rgba(0, 0, 0, 0.72) calc(100% - var(--edge) * 0.68),
+      rgba(0, 0, 0, 0.42) calc(100% - var(--edge) * 0.45),
+      rgba(0, 0, 0, 0.14) calc(100% - var(--edge) * 0.22),
+      transparent 100%
+    );
+  }
+}
+
+/* Below lg the band has no fixed ratio and the crop is tight enough to drag
+   the books under the copy, so a cream wash carries the contrast instead. */
+@media (width < 64rem) {
+  .word-games-background-Images {
+    background-image:
+      linear-gradient(
+        to bottom,
+        rgba(250, 247, 241, 0.9),
+        rgba(250, 247, 241, 0.78)
+      ),
+      url("/WordGames/HeroSectionOverlap.png"),
+      url("/WordGames/HeroSection.png");
+    background-position: center, left center, left center;
+  }
 }

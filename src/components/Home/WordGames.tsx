@@ -2,59 +2,64 @@
 
 import Image from "next/image";
 import NewsletterSignup from "@/components/NewLetterSignup";
-import { RuleOrnament, ScrollOrnament } from "@/components/ui/Ornaments";
 
 export default function WordGames() {
   return (
-    <section className="relative flex min-h-[calc(100svh-80px)] items-center overflow-hidden bg-cream px-6 pt-10 pb-24 sm:pt-14 sm:pb-20">
-      <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center justify-between gap-10">
-        <div className="flex flex-col items-center text-center w-full max-w-lg">
-          <ScrollOrnament className="w-[260px] text-gold sm:w-[320px]" />
+    <section className="relative isolate overflow-hidden bg-cream">
+      {/* The band matches the navbar's max-w-7xl, so the artwork and the copy
+          sit on the same measure as the logo and links above them. It carries
+          the artwork's own 1440x760 ratio rather than a viewport height, so
+          the hero shrinks with the window like every other section, and it is
+          the container the whole composition is sized against. */}
+      <div className="@container relative mx-auto w-full max-w-8xl lg:aspect-[1440/900]">
+        {/* Photograph + its white scrim, on their own layer so the copy is
+            never boxed in by the artwork's own margins. */}
+        <div
+          aria-hidden
+          className="word-games-background-Images absolute inset-y-0 left-1/2 -z-10 w-screen max-w-10xl -translate-x-1/2"
+        />
 
-          {/* Cormorant runs optically small, so the display sizes sit high. */}
-          <h1 className="mt-1 max-w-[13ch] text-[46px] leading-[1.02] font-bold text-balance text-ink sm:text-[62px] lg:text-[76px]">
-            Faith-Filled Word Search &amp; Puzzle Books
-          </h1>
+        {/* Every measure below lg is in cqw/em off this band, so the copy
+            scales in lockstep with the stretched artwork behind it: the books
+            always start at 42% across and the text always stops short of
+            them, at any window size or zoom level. */}
+        <div className="flex h-full w-full items-center px-6 py-14 sm:py-16 lg:py-[2cqw]">
+          {/* This element is the scale root — its font-size drives every `em`
+              and `ch` measure inside, so one number moves the whole block. */}
+          <div className="mx-auto flex w-full max-w-[540px] flex-col items-center text-center text-[17px] lg:mx-0 lg:w-[36cqw] lg:max-w-none lg:text-[1.25cqw]">
+            <Image
+              src="/WordGames/HeaderUpperLayer.png"
+              alt=""
+              width={388}
+              height={87}
+              className="h-auto w-[14.5em] sm:w-[18em] lg:w-[72%]"
+              priority
+            />
 
-          <RuleOrnament className="mt-2 w-[260px] text-gold sm:w-[320px]" />
+            {/* Playfair sets larger on the body than Cormorant, so the sizes here
+                come down a step. The em measure forces the line break. */}
+            <h1 className="mt-[0.5em] max-w-[7.2em] font-display text-[2.2em] leading-[1.1] font-bold text-[#223574] sm:text-[2.85em] lg:text-[3.5em]">
+              Faith-Filled Word Search & Puzzle Books
+            </h1>
 
-          <p className="mt-3 max-w-[30ch] text-[19px] leading-snug font-semibold text-ink/75 sm:text-[23px]">
-            Inspiring word searches and puzzles that illuminate God&apos;s Word.
-          </p>
+            <Image
+              src="/WordGames/HeaderMiddleLayer.png"
+              alt=""
+              width={436}
+              height={7}
+              className="mt-[1.1em] h-auto w-[436px] max-w-full"
+              priority
+            />
 
-          <NewsletterSignup />
-        </div>
+            <p className="mt-[1.1em] max-w-[32ch] text-[1.08em] leading-snug font-medium text-[#223574] sm:text-[1.25em] lg:text-[1.7em]">
+              Inspiring word searches and puzzles that illuminate God&apos;s
+              Word.
+            </p>
 
-        <div className="relative aspect-4/3 w-full lg:aspect-auto lg:h-[min(560px,65svh)]">
-          <Image
-            src="/Amenscapes/hero-book.png"
-            alt="Bible WordaLight and Bent-o-Box puzzle books"
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-right"
-            priority
-          />
+            <NewsletterSignup />
+          </div>
         </div>
       </div>
-
-      <button
-        type="button"
-        aria-label="Scroll down"
-        onClick={() =>
-          window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
-        }
-        className="absolute bottom-5 left-1/2 z-10 flex size-10 -translate-x-1/2 items-center justify-center rounded-full bg-ink/10 text-ink transition-colors hover:bg-ink/20 sm:bottom-8"
-      >
-        <svg width="18" height="18" viewBox="0 0 14 14" fill="none" aria-hidden>
-          <path
-            d="M3.5 5.5 7 9l3.5-3.5"
-            stroke="currentColor"
-            strokeWidth="2.4"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
     </section>
   );
 }

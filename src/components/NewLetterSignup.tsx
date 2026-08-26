@@ -43,54 +43,46 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <div id="signup" className="mt-7 w-full max-w-md scroll-mt-24 sm:mt-8">
+    <div id="signup" className="mt-[1.6em] w-full max-w-[26em] scroll-mt-24">
       {status === "success" || status === "alreadySubscribed" ? (
         <DownloadPDF status={status} cancel={() => setStatus("idle")} />
       ) : (
-        <form noValidate onSubmit={handleSubmit} className="flex flex-col items-center gap-2">
-          <div className="flex w-full items-center rounded-full bg-white p-1.5 ring-1 ring-ink/10 shadow-[0_12px_30px_-10px_rgba(21,42,80,0.35)]">
+        <form
+          noValidate
+          onSubmit={handleSubmit}
+          className="flex flex-col items-center gap-[0.5em]"
+        >
+          {/* Outlined pill from the comps. The arrow is absolutely placed so
+              the placeholder stays optically centred in the field rather than
+              being pushed left by a flex sibling. */}
+          <div className="relative w-full rounded-full border-[0.09em] border-ink/70 bg-white/45 transition-colors focus-within:border-ink">
             <label htmlFor="newsletter-email" className="sr-only">
               Email
             </label>
-            <span className="pointer-events-none ml-3 shrink-0 text-ink/70 sm:ml-4">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden>
-                <rect
-                  x="3"
-                  y="5"
-                  width="18"
-                  height="14"
-                  rx="2.5"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                />
-                <path
-                  d="M4 7.5 12 13l8-5.5"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </span>
             <input
               id="newsletter-email"
               type="email"
-              placeholder="you@email.com"
+              placeholder="Enter email address to download sample puzzle"
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
                 if (status === "error" || status === "invalid") setStatus("idle");
               }}
               autoComplete="email"
-              className="min-w-0 flex-1 bg-transparent px-3 py-3 text-[16px] text-ink outline-none placeholder:text-ink/70 sm:text-[17px]"
+              className="w-full truncate rounded-full bg-transparent px-[2.4em] py-[0.85em] text-center text-[0.95em] text-ink italic outline-none placeholder:text-ink/70"
             />
             <button
               type="submit"
               disabled={status === "subscribing"}
-              className="flex h-[46px] shrink-0 items-center gap-2 rounded-full bg-ink px-5 text-[12px] font-bold tracking-[0.14em] text-white uppercase transition-colors hover:bg-ink-deep disabled:cursor-not-allowed disabled:opacity-70 sm:px-6 sm:text-[13px]"
+              aria-label="Sign up"
+              className="absolute top-1/2 right-[0.45em] flex size-[2.1em] -translate-y-1/2 items-center justify-center rounded-full text-gold transition-colors hover:bg-ink/5 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {status === "subscribing" ? "..." : "Sign up"}
-              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <svg
+                viewBox="0 0 16 16"
+                fill="none"
+                aria-hidden
+                className="size-[1.05em]"
+              >
                 <path
                   d="M3 8h9m0 0L8.6 4.6M12 8l-3.4 3.4"
                   stroke="currentColor"
@@ -102,12 +94,12 @@ export default function NewsletterSignup() {
             </button>
           </div>
           {status === "invalid" && (
-            <p className="text-[13px] font-medium text-red-700">
+            <p className="text-[0.78em] font-medium text-red-700">
               Enter a valid email.
             </p>
           )}
           {status === "error" && (
-            <p className="text-[13px] font-medium text-red-700">
+            <p className="text-[0.78em] font-medium text-red-700">
               Something went wrong. Please try again.
             </p>
           )}

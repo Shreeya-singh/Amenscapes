@@ -104,12 +104,12 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-ink/10 bg-cream/85 shadow-[0_8px_30px_rgba(21,42,80,0.10)] backdrop-blur-xl"
-          : "border-b border-transparent bg-cream"
+          ? "border-b border-ink/10 bg-[#FBF8F2]/85 shadow-[0_8px_30px_rgba(21,42,80,0.10)] backdrop-blur-xl"
+          : "border-b border-transparent bg-[#FBF8F2]"
       }`}
     >
       <nav
-        className={`relative mx-auto flex w-full max-w-7xl items-center justify-between px-6 transition-all duration-300 ${
+        className={`relative mx-auto flex w-full max-w-8xl items-center justify-between px-6 transition-all duration-300 ${
           scrolled ? "h-[68px]" : "h-[80px]"
         }`}
       >
@@ -122,27 +122,18 @@ export default function Navbar() {
               split so they sit on one line with the nav links. */}
           <span className="flex items-end gap-2">
             <Image
-              src="/Amenscapes/LogoMark.png"
+              src="/Navbar/NavbarLogo.png"
               alt=""
               width={198}
               height={298}
               className="h-10 w-auto object-contain"
               priority
             />
-            <Image
-              src="/Amenscapes/LogoWordmark.png"
-              alt="Amenscapes"
-              width={649}
-              height={88}
-              sizes="160px"
-              className="h-auto w-[160px] max-w-none object-contain"
-              priority
-            />
           </span>
         </Link>
 
         {/* Desktop links — absolutely centred so the logo stays flush left. */}
-        <ul className="hidden items-center gap-1 md:flex">
+        <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
             return (
@@ -213,7 +204,7 @@ export default function Navbar() {
       {/* Mobile panel */}
       <div
         id="mobile-nav"
-        className={`overflow-hidden border-t border-ink/10 bg-cream/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden
+        className={`overflow-hidden border-t border-ink/10 bg-[#FBF8F2]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden
           ${open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
           `}
       >
