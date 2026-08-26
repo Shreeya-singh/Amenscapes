@@ -86,40 +86,71 @@ export default function NewsletterSignup() {
                 if (status === "error" || status === "invalid") setStatus("idle");
               }}
               autoComplete="email"
-              className="w-full truncate rounded-full bg-transparent px-[1.4em] py-[0.95em] text-center text-[0.88em] text-ink italic outline-none placeholder:text-ink/70 sm:px-[2.4em] sm:py-[0.85em] sm:text-[0.95em]"
+              disabled={status === "subscribing"}
+              aria-invalid={status === "invalid"}
+              aria-describedby={
+                status === "invalid" || status === "error"
+                  ? "newsletter-message"
+                  : undefined
+              }
+              className="w-full truncate disabled:opacity-60 rounded-full bg-transparent px-[1.4em] py-[0.95em] text-center text-[0.88em] text-ink italic outline-none placeholder:text-ink/70 sm:px-[2.4em] sm:py-[0.85em] sm:text-[0.95em]"
             />
             <button
               type="submit"
               disabled={status === "subscribing"}
-              aria-label="Sign up"
+              aria-label={status === "subscribing" ? "Signing up" : "Sign up"}
               className="absolute top-1/2 right-[0.45em] flex size-[2.1em] -translate-y-1/2 items-center justify-center rounded-full text-gold transition-colors hover:bg-ink/5 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <svg
-                viewBox="0 0 16 16"
-                fill="none"
-                aria-hidden
-                className="size-[1.05em]"
-              >
-                <path
-                  d="M3 8h9m0 0L8.6 4.6M12 8l-3.4 3.4"
-                  stroke="currentColor"
-                  strokeWidth="1.7"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              {/* The arrow alone gives the wait no read beyond a dim button,
+                  and the Beehiiv round-trip runs long enough to look dead. */}
+              {status === "subscribing" ? (
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden
+                  className="size-[1.05em] animate-spin"
+                >
+                  <circle
+                    cx="8"
+                    cy="8"
+                    r="6"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeOpacity="0.3"
+                  />
+                  <path
+                    d="M14 8a6 6 0 0 0-6-6"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  aria-hidden
+                  className="size-[1.05em]"
+                >
+                  <path
+                    d="M3 8h9m0 0L8.6 4.6M12 8l-3.4 3.4"
+                    stroke="currentColor"
+                    strokeWidth="1.7"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </button>
           </div>
-          {status === "invalid" && (
-            <p className="text-[0.78em] font-medium text-red-700">
-              Enter a valid email.
-            </p>
-          )}
-          {status === "error" && (
-            <p className="text-[0.78em] font-medium text-red-700">
-              Something went wrong. Please try again.
-            </p>
-          )}
+          <p
+            id="newsletter-message"
+            role="alert"
+            className="text-[0.78em] font-medium text-red-700 empty:hidden"
+          >
+            {status === "invalid" && "Enter a valid email."}
+            {status === "error" && "Something went wrong. Please try again."}
+          </p>
         </form>
       )}
     </div>
