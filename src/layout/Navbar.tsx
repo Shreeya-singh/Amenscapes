@@ -68,7 +68,17 @@ export default function Navbar() {
         setActive("");
         return;
       }
-      // The last section to have crossed 45% of the viewport owns the nav.
+      // At the end of the page the last section owns the nav whatever the
+      // measure says: About sits above the footer with too little runway left
+      // to push its own top past the line, so it would never light up.
+      const doc = document.documentElement;
+      const atBottom =
+        window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
+      if (atBottom && sections.length) {
+        setActive(sections[sections.length - 1].id);
+        return;
+      }
+      // Otherwise, the last section to have crossed 45% of the viewport.
       const line = window.innerHeight * 0.45;
       const current = sections.filter(
         (el) => el.getBoundingClientRect().top <= line,

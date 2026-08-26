@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Flourish, OliveBranch, PlusMark } from "@/components/ui/Ornaments";
 
 type Spread = {
   src: string;
@@ -9,52 +8,51 @@ type Spread = {
   height: number;
 };
 
-/** Placeholder art — swap in the bento page spreads when they land. */
 const SPREADS: Spread[] = [
   {
-    src: "/Amenscapes/Bent-o-Box_Phone1.jpg",
-    alt: "Bent-o-Box puzzle page, the Last Supper",
-    width: 768,
-    height: 1152,
+    src: "/Bentobox/bentobox_first.png",
+    alt: "Bent-o-Box puzzle page, the Nativity",
+    width: 409,
+    height: 524,
   },
   {
-    src: "/Amenscapes/Bent-o-Box_Phone2.jpg",
-    alt: "Bent-o-Box puzzle page, the bread and the cup",
-    width: 768,
-    height: 1152,
+    src: "/Bentobox/bentobox_second.png",
+    alt: "Bent-o-Box puzzle page, the Last Supper",
+    width: 409,
+    height: 524,
   },
 ];
 
 export default function BentoBoxComingSoon() {
   return (
-    <section id="bentobox" className="bg-cream px-6 py-14 sm:py-20">
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-10">
-        <div className="flex flex-col items-center text-center">
-          <div className="flex items-center justify-center gap-3 sm:gap-4">
-            <Flourish className="w-[58px] text-gold sm:w-[74px]" flip />
-            {/* Cormorant runs optically small, so the display size sits high. */}
-            <h2 className="text-[38px] leading-none font-bold text-ink sm:text-[52px]">
-              Bentobox
-            </h2>
-            <Flourish className="w-[58px] text-gold sm:w-[74px]" />
-          </div>
+    <section id="bentobox" className="bg-[#EFF6F8] px-5 py-12 sm:px-6 sm:py-20">
+      {/* The spreads carry this section, so they take roughly two thirds of the
+          measure and the copy runs as a narrow column beside them. */}
+      <div className="mx-auto grid w-full max-w-7xl gap-9 sm:gap-12 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,2fr)] lg:items-start lg:gap-16">
+        <div className="flex flex-col items-center text-center lg:items-start lg:pt-2 lg:text-left">
+          {/* Cormorant runs optically small, so the display size sits high. */}
+          <h2 className="text-[40px] leading-none font-bold text-ink sm:text-[52px] lg:text-[64px]">
+            Bentobox
+          </h2>
 
-          <p className="mt-5 rounded-full border border-gold/70 px-6 py-2 text-[13px] font-semibold tracking-[0.22em] text-gold uppercase sm:text-[14px]">
+          <p className="mt-4 rounded-full border border-gold/70 px-5 py-2 text-[12px] font-semibold tracking-[0.18em] text-gold uppercase sm:mt-5 sm:px-6 sm:text-[14px] sm:tracking-[0.22em]">
             Coming soon
           </p>
 
-          <PlusMark className="mt-7 w-5 text-gold" />
-
-          <p className="mt-4 max-w-[32ch] text-[18px] leading-relaxed font-semibold text-ink/70 sm:text-[20px]">
+          <p className="mt-6 max-w-[34ch] text-[17px] leading-relaxed font-semibold text-ink/70 sm:mt-8 sm:text-[20px]">
             A beautiful puzzle &amp; activity experience inspired by Scripture,
             faith, and timeless stories.
           </p>
 
-          <OliveBranch className="mt-7 h-[74px] w-auto text-gold sm:h-[86px]" />
+          <div aria-hidden className="mt-7 h-px w-14 bg-gold sm:mt-10 sm:w-16" />
         </div>
 
-        {/* Two pages, shown side by side as they read in the book. */}
-        <div className="flex items-center justify-center gap-4 sm:gap-7">
+        {/* Two pages, shown side by side as they read in the book. Side by
+            side on a phone each page lands near 150px wide and the puzzle text
+            is unreadable, so below sm they stack and take the full column.
+            From sm up they share the column evenly, scaling with it instead of
+            being pinned to a height that would overflow a narrow desktop. */}
+        <div className="grid justify-items-center gap-6 sm:grid-cols-2 sm:items-center lg:gap-8">
           {SPREADS.map((spread) => (
             <Image
               key={spread.src}
@@ -62,11 +60,8 @@ export default function BentoBoxComingSoon() {
               alt={spread.alt}
               width={spread.width}
               height={spread.height}
-              sizes="(max-width: 1024px) 45vw, 300px"
-              /* Height-driven from sm up; below it the pair is sized off the
-                 viewport instead, because two 240px-tall spreads plus the gap
-                 are wider than a 320px screen and scrolled the page sideways. */
-              className="h-auto w-[42vw] shrink-0 rounded-[3px] shadow-[0_14px_40px_rgba(21,42,80,0.16)] sm:h-[320px] sm:w-auto lg:h-[360px]"
+              sizes="(max-width: 640px) 84vw, (max-width: 1024px) 45vw, 33vw"
+              className="h-auto w-full max-w-[330px] min-w-0 rounded-[3px] shadow-[0_14px_40px_rgba(21,42,80,0.16)] sm:max-w-[440px]"
             />
           ))}
         </div>

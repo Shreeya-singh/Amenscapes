@@ -32,6 +32,8 @@
 
 /* Editorial theme: warm paper + navy type + gold ornament. */
 @theme {
+  --color-paper: #fffdfc;
+  --color-cream-light: #fbf8f2;
   --color-cream: #faf7f1;
   --color-cream-deep: #f1e9dc;
   --color-ink: #1e3a6b;

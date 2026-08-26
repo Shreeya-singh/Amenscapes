@@ -12,7 +12,7 @@ const COLUMNS = [
     links: [
       { label: "Wordalight", href: "/#wordalight" },
       { label: "Bentobox", href: "/#bentobox" },
-      { label: "T-Shirts", href: "/#apparel" },
+      { label: "T-Shirts", href: "/#t-shirt" },
     ],
   },
   {
@@ -34,68 +34,54 @@ const COLUMNS = [
 ] as const;
 
 const SOCIALS = [
-  {
-    label: "Amenscapes on Facebook",
-    href: "#",
-    path: "M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5H16.7V3.6A21 21 0 0 0 14.3 3.5c-2.4 0-4 1.45-4 4.12V9.9H7.6V13h2.7v8Z",
-  },
-  {
-    label: "Amenscapes on Instagram",
-    href: "#",
-    path: "M8.2 3h7.6A5.2 5.2 0 0 1 21 8.2v7.6a5.2 5.2 0 0 1-5.2 5.2H8.2A5.2 5.2 0 0 1 3 15.8V8.2A5.2 5.2 0 0 1 8.2 3Zm0 1.9A3.3 3.3 0 0 0 4.9 8.2v7.6a3.3 3.3 0 0 0 3.3 3.3h7.6a3.3 3.3 0 0 0 3.3-3.3V8.2a3.3 3.3 0 0 0-3.3-3.3ZM12 7.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm0 1.9a2.6 2.6 0 1 0 0 5.2 2.6 2.6 0 0 0 0-5.2Zm4.9-2.6a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z",
-  },
-  {
-    label: "Email Amenscapes",
-    href: "#",
-    path: "M4 5.5h16c.8 0 1.5.7 1.5 1.5v10c0 .8-.7 1.5-1.5 1.5H4c-.8 0-1.5-.7-1.5-1.5V7c0-.8.7-1.5 1.5-1.5Zm.9 1.9 6.6 4.7c.3.2.7.2 1 0l6.6-4.7Zm-.4 1.8V16.6h15V9.2l-6.3 4.5a2.9 2.9 0 0 1-3.4 0Z",
-  },
+  { label: "Instagram", href: "#" },
+  { label: "Facebook", href: "#" },
+  { label: "Email", href: "#" },
 ] as const;
+
+/** Shared by every link in the footer — muted grey that darkens to navy. */
+const linkClass =
+  "inline-block py-1.5 text-[16px] font-medium text-[#5D606A] underline-offset-4 outline-none transition-colors hover:text-[#223574] hover:underline focus-visible:ring-2 focus-visible:ring-[#223574]/40 sm:py-1 sm:text-[17px]";
+
+const headingClass = "text-[17px] font-bold text-[#223574] sm:text-[18px]";
 
 export default function Footer() {
   return (
-    <footer className="mt-auto border-t border-ink/10 bg-cream">
-      <div className="mx-auto grid w-full max-w-7xl gap-10 px-6 py-12 sm:grid-cols-2 sm:py-14 lg:grid-cols-[auto_minmax(0,15rem)_repeat(3,minmax(0,1fr))_auto] lg:gap-8">
+    <footer className="mt-auto border-t border-[#223574]/10 bg-[#FBF8F2]">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-2 gap-x-5 gap-y-8 px-5 py-11 sm:grid-cols-3 sm:gap-10 sm:px-6 sm:py-14 lg:grid-cols-[minmax(0,17rem)_repeat(4,minmax(0,1fr))] lg:gap-8">
         {/* The stacked lockup — mark over wordmark, as the brand sheet has it. */}
-        <div className="flex max-w-xs shrink-0 flex-col items-center gap-3 sm:items-start">
+        <div className="col-span-2 flex flex-col items-start gap-3.5 border-b border-[#223574]/10 pb-7 sm:col-span-3 sm:gap-4 sm:border-b-0 sm:pb-0 lg:col-span-1">
           <Link
             href="/"
-            className="flex flex-row items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-ink/40 sm:items-end"
+            className="rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-[#223574]/40"
           >
             <Image
-              src="/Amenscapes/LogoMark.png"
-              alt=""
-              width={198}
-              height={298}
-              className="h-11 w-auto max-w-none object-contain"
-            />
-            <Image
-              src="/Amenscapes/LogoWordmark.png"
+              src="/Footer/Footer_Logo.png"
               alt="Amenscapes"
-              width={649}
-              height={88}
-              sizes="160px"
-              className="h-auto w-[160px] max-w-none object-contain"
+              width={120}
+              height={63}
+              sizes="120px"
+              className="h-auto w-[120px] max-w-none object-contain"
             />
           </Link>
 
-          <p className="text-center text-[16px] leading-relaxed font-medium text-ink/70 sm:text-left sm:text-[17px]">
+          <p className="max-w-[42ch] text-[16px] leading-relaxed font-medium text-[#5D606A] sm:text-[17px]">
             Creating faith-filled puzzles and books that inspire hearts and
             minds through God&apos;s Word.
           </p>
         </div>
 
         {COLUMNS.map((column) => (
-          <nav key={column.heading} aria-label={column.heading}>
-            <h2 className="text-[17px] font-bold text-ink sm:text-[18px]">
-              {column.heading}
-            </h2>
-            <ul className="mt-3 flex flex-col gap-2">
+          <nav
+            key={column.heading}
+            aria-label={column.heading}
+            className="min-w-0"
+          >
+            <h2 className={headingClass}>{column.heading}</h2>
+            <ul className="mt-2 flex flex-col gap-1">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-[16px] font-medium text-ink/70 underline-offset-4 outline-none transition-colors hover:text-ink hover:underline focus-visible:ring-2 focus-visible:ring-ink/40 sm:text-[17px]"
-                  >
+                  <Link href={link.href} className={linkClass}>
                     {link.label}
                   </Link>
                 </li>
@@ -104,41 +90,28 @@ export default function Footer() {
           </nav>
         ))}
 
-        <div className="flex flex-col items-center gap-3 sm:items-start lg:items-end">
-          <h2 className="text-[17px] font-bold text-ink sm:text-[18px]">
-            Follow Us
-          </h2>
-          <ul className="flex items-center gap-3">
+        <nav aria-label="Follow Us" className="min-w-0">
+          <h2 className={headingClass}>Follow Us</h2>
+          <ul className="mt-2 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-0 lg:flex-col lg:gap-1">
             {SOCIALS.map((social) => (
               <li key={social.label}>
-                <Link
-                  href={social.href}
-                  aria-label={social.label}
-                  className="flex size-9 items-center justify-center rounded-full bg-ink text-cream outline-none transition-transform hover:scale-[1.08] focus-visible:ring-2 focus-visible:ring-ink/40"
-                >
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="size-[18px]"
-                    fill="currentColor"
-                    aria-hidden
-                  >
-                    <path d={social.path} />
-                  </svg>
+                <Link href={social.href} className={linkClass}>
+                  {social.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
       </div>
 
       {/* Hairline sign-off with the gold plus standing on it. */}
-      <div className="mx-auto w-full max-w-7xl px-6">
+      <div className="mx-auto w-full max-w-7xl px-5 sm:px-6">
         <div className="flex items-center gap-3 text-gold">
-          <span className="h-px flex-1 bg-ink/10" />
+          <span className="h-px flex-1 bg-[#223574]/10" />
           <PlusMark className="w-3.5" />
-          <span className="h-px flex-1 bg-ink/10" />
+          <span className="h-px flex-1 bg-[#223574]/10" />
         </div>
-        <p className="py-5 text-center text-[15px] font-medium text-ink/60 sm:text-[16px]">
+        <p className="py-5 text-center text-[14px] font-medium text-[#5D606A] sm:text-[16px]">
           © {new Date().getFullYear()} Amenscapes. All rights reserved.
         </p>
       </div>
