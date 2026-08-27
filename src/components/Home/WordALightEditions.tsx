@@ -37,7 +37,7 @@ const EDITIONS: Edition[] = [
     blurb: "Clean minimal\nedition.",
     src: "/WordALight/bible_Right.png",
     width: 300,
-    height: 453,
+    height: 451,
   },
 ];
 
@@ -71,26 +71,26 @@ function EditionCard({
       </div>
 
       <div className="min-w-0">
-        <h3 className="text-[26px] leading-tight font-bold text-ink sm:text-[32px] xl:text-[38px] 2xl:text-[42px]">
+        <h3 className="text-[26px] leading-tight font-bold text-[#223574] sm:text-[32px] lg:text-[38px]">
           {title}
         </h3>
         <div
           aria-hidden
-          className="mx-auto mt-3 h-px w-14 bg-gold sm:mx-0 sm:w-20 xl:mt-4 xl:w-24"
+          className="mx-auto mt-2 h-px w-14 border border-[#C99237] sm:mx-0 xl:mt-4 xl:w-12"
         />
-        <p className="mx-auto mt-3.5 max-w-[21ch] text-[17px] leading-snug font-semibold whitespace-pre-line text-ink/70 sm:mx-0 sm:mt-4 sm:max-w-[16ch] sm:text-[19px] xl:mt-5 xl:max-w-[20ch] xl:text-[21px] 2xl:text-[22px]">
+        <p className="mx-auto mt-3.5 max-w-[21ch] text-[17px] leading-snug font-semibold whitespace-pre-line text-[#535B70] sm:mx-0 sm:mt-4 sm:max-w-[16ch] sm:text-[19px] lg:text-[26px]">
           {blurb}
         </p>
 
         {href && cta ? (
           <Link
             href={href}
-            className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-gold px-6 py-3 text-center text-[14px] font-bold whitespace-nowrap text-cream transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:outline-none xl:mt-8 xl:px-7 xl:py-3.5 xl:text-[16px]"
+            className="text-[#FBF8F2] mt-6 inline-flex min-h-11 items-center justify-center rounded-full bg-gold px-4 py-3 text-center text-[16px] font-bold whitespace-nowrap text-cream transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-gold/70 focus-visible:outline-none"
           >
             {cta}
           </Link>
         ) : (
-          <p className="mt-6 inline-flex min-h-11 items-center justify-center rounded-full border border-gold/70 px-6 py-3 text-[12px] font-semibold tracking-[0.18em] whitespace-nowrap text-gold uppercase sm:text-[13px] xl:mt-8 xl:px-7 xl:py-3.5 xl:text-[14px]">
+          <p className=" mt-6 inline-flex min-h-11 items-center justify-center rounded-full border-2 border-[#C99237] px-4 py-3 text-[12px] font-bold font-display tracking-[0.18em] whitespace-nowrap text-[#C99237] uppercase sm:text-[14px]">
             Coming soon
           </p>
         )}
@@ -103,40 +103,41 @@ export default function WordALightEditions() {
   return (
     <section id="wordalight" className="bg-paper px-5 py-12 sm:px-6 sm:py-20">
       <div className="mx-auto w-full max-w-6xl xl:max-w-[80rem] 2xl:max-w-[84rem]">
-        <div className="flex items-center justify-center gap-2">
+        <div className="flex items-end justify-center gap-5">
           <Image
             src="/WordALight/VectorLeft.png"
             alt=""
             aria-hidden
-            width={90}
+            width={100}
             height={41}
-            className="h-auto w-[38px] sm:w-[54px] lg:w-[68px]"
+            className="h-auto w-[38px] sm:w-[54px] lg:w-[78px]"
           />
-          <h2 className="text-[26px] leading-none font-bold tracking-[0.04em] text-ink uppercase sm:text-[36px] lg:text-[44px]">
+          <h2 className="font-display text-[26px] leading-none font-bold tracking-[0.04em] text-[#223574] uppercase sm:text-[36px] lg:text-[46px]">
             WordaLight
           </h2>
           <Image
             src="/WordALight/VectorRight.png"
             alt=""
             aria-hidden
-            width={90}
+            width={100}
             height={41}
-            className="h-auto w-[38px] sm:w-[54px] lg:w-[68px]"
+            className="h-auto w-[38px] sm:w-[54px] lg:w-[78px]"
           />
         </div>
 
-        <p className="mx-auto mt-3 max-w-[26ch] text-center text-[16px] leading-snug font-semibold text-ink/70 sm:mt-2 sm:max-w-none sm:text-[19px] lg:text-[21px]">
+        <p className="mx-auto mt-2 max-w-[26ch] text-center text-[17px] leading-snug font-semibold text-[#223574]/70 sm:max-w-none sm:text-[19px]">
           Discover God&apos;s Word, one puzzle at a time.
         </p>
 
-        <div className="mt-5 flex justify-center sm:mt-4">
+        <div className="mt-3 flex justify-center">
           <Link
             href={PLAY_HREF}
-            className="inline-flex min-h-11 items-center rounded-full bg-ink px-7 py-3 text-[16px] font-bold text-[#FFCD79] underline underline-offset-4 sm:px-7 sm:py-3 sm:text-[17px] transition-transform hover:scale-[1.04] focus-visible:ring-4 focus-visible:ring-[#FFCD79]/90 focus-visible:outline-none lg:text-[19px]"
+            className="inline-flex min-h-11 items-center rounded-full bg-[#223574] px-7 py-3 text-[16px] font-bold text-[#FFCD79] underline underline-offset-4 sm:px-5 sm:py-3 sm:text-[17px] transition-transform hover:scale-[1.04] border-2 border-[#C99237] lg:text-[20px]"
           >
             Try the game NOW!
           </Link>
         </div>
+      
 
         <div className="mt-9 flex flex-col items-stretch gap-7 sm:mt-14 sm:gap-8 xl:flex-row xl:items-center xl:gap-8 2xl:gap-10">
           <EditionCard {...EDITIONS[0]} />

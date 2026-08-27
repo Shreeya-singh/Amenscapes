@@ -71,6 +71,7 @@ export default function Footer() {
           </p>
         </div>
 
+        
         {COLUMNS.map((column) => (
           <nav
             key={column.heading}
@@ -92,7 +93,7 @@ export default function Footer() {
 
         <nav aria-label="Follow Us" className="min-w-0">
           <h2 className={headingClass}>Follow Us</h2>
-          <ul className="mt-2 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-0 lg:flex-col lg:gap-1">
+          <ul className="mt-2 flex flex-col gap-1 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4 sm:gap-y-1 lg:gap-4">
             {SOCIALS.map((social) => (
               <li key={social.label}>
                 <Link href={social.href} className={linkClass}>
