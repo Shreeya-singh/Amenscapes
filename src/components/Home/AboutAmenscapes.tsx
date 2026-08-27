@@ -18,7 +18,10 @@ const PILLARS = [
 
 export default function AboutAmenscapes() {
   return (
-    <section id="About" className="bg-paper px-5 py-12 sm:px-6 sm:py-16 lg:py-20">
+    <section
+      id="About"
+      className="bg-paper px-5 py-12 sm:px-6 sm:py-16 lg:py-20"
+    >
       <div className="mx-auto w-full max-w-6xl">
         {/* Same lockup as the WordaLight heading above — the gold vectors are
             the site's own, so the two section titles read as a pair. */}
@@ -31,7 +34,7 @@ export default function AboutAmenscapes() {
             height={41}
             className="h-auto w-[34px] sm:w-[48px] lg:w-[60px]"
           />
-          <h2 className="text-[26px] leading-none font-bold tracking-[0.04em] text-ink uppercase sm:text-[34px] lg:text-[40px]">
+          <h2 className="text-[26px] leading-none font-bold tracking-[0.04em] text-[#263B7C] uppercase sm:text-[34px] lg:text-[40px]">
             About Us
           </h2>
           <Image
@@ -81,13 +84,18 @@ export default function AboutAmenscapes() {
                 />
               )}
 
-              <h3 className="text-[21px] leading-tight font-bold text-ink sm:text-[24px]">
-                {pillar.title}
-              </h3>
-              <div aria-hidden className="mt-2.5 h-px w-12 bg-gold sm:w-14" />
-              <p className="mt-3 max-w-[32ch] text-[16px] leading-relaxed font-semibold text-ink/70 sm:text-[17px]">
-                {pillar.body}
-              </p>
+              <div className="flex flex-col items-center gap-3">
+                <h3 className="text-[21px] leading-tight font-bold text-[#263B7C] sm:text-[24px]">
+                  {pillar.title}
+                </h3>
+                <div
+                  aria-hidden
+                  className="h-px w-14 border border-[#C99237] sm:w-16"
+                />
+                <p className="max-w-[32ch] text-[16px] leading-relaxed font-semibold text-[#263B7C]/70 sm:text-[17px]">
+                  {pillar.body}
+                </p>
+              </div>
             </li>
           ))}
         </ul>
@@ -98,8 +106,8 @@ export default function AboutAmenscapes() {
             lands on it last and stops there. The gold is the brighter #FFCD79
             the WordaLight button already uses on this ground; the ornament
             gold sits too close to navy to read. */}
-        <div className="mt-10 rounded-[20px] bg-ink px-5 py-8 text-center shadow-[0_18px_50px_rgba(21,42,80,0.18)] sm:mt-11 sm:rounded-[28px] sm:px-10 sm:py-9">
-          <p className="text-[11px] font-semibold tracking-[0.22em] text-[#FFCD79] uppercase sm:text-[12px]">
+        <div className="mt-10 rounded-[20px] bg-[#263B7C] px-5 py-8 text-center shadow-[0_18px_50px_rgba(21,42,80,0.18)] sm:mt-11 sm:rounded-[28px] sm:px-10 sm:py-9">
+          <p className="text-[11px] font-bold tracking-[0.22em] text-[#FFCD79] uppercase sm:text-[12px]">
             Our mission
           </p>
           <div

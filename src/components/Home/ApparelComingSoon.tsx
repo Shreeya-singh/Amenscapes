@@ -14,7 +14,7 @@ export default function ApparelComingSoon() {
           rather than fractional, so the section never grows taller than the
           copy needs on a wide screen. */}
       <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,720px)]">
-        <div className="flex flex-col items-center justify-between lg:mt-18 lg:mb-28 px-5 pt-12 pb-9 text-center sm:px-6 sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
+        <div className="flex flex-col items-center justify-between lg:mt-18 lg:mb-36 px-5 pt-12 pb-9 text-center sm:px-6 sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
           {/* Cormorant runs optically small, so the display size sits high. */}
           <div className="flex flex-col items-center sm:items-start">
             <h2 className="text-[40px] leading-none font-bold font-display text-[#223574] sm:text-[52px] lg:text-[58px]">
@@ -26,7 +26,7 @@ export default function ApparelComingSoon() {
           </div>
 
           <div className="flex flex-col items-center sm:items-start">
-            <p className="mt-6 max-w-[30ch] text-[17px] leading-relaxed font-semibold text-[#4C5870] sm:mt-7 sm:max-w-[30ch] sm:text-[24px]">
+          <p className="mt-6 max-w-[24ch] font-display text-[20px] leading-relaxed text-[#4C5870] sm:mt-8 ">
               Wear your faith. Beautiful Christian-inspired designs that speak
               hope and truth.
             </p>

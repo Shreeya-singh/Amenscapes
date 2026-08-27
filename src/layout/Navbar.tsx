@@ -170,7 +170,7 @@ export default function Navbar() {
                   className={`group relative block rounded-full px-3 py-2 text-[17px] font-medium whitespace-nowrap outline-none transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-ink/40 lg:px-4 ${
                     isActive
                       ? "text-ink"
-                      : "text-ink/70 hover:bg-ink/5 hover:text-ink"
+                      : "text-[#263B7C] hover:bg-[#263B7C]/5 hover:text-[#263B7C]"
                   }`}
                 >
                   {link.label}
