@@ -39,7 +39,7 @@ export default function BentoBoxComingSoon() {
             Coming soon
           </p>
 
-          <p className="mt-6 max-w-[34ch] font-display text-[18px] leading-relaxed text-[#4C5870] sm:mt-8 ">
+          <p className="mt-6 max-w-[34ch] font-display text-[20px] leading-relaxed text-[#4C5870] sm:mt-8 ">
             A beautiful puzzle & activity experience inspired by Scripture,
             faith, and timeless stories.
           </p>

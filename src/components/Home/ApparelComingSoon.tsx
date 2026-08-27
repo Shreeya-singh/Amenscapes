@@ -13,28 +13,34 @@ export default function ApparelComingSoon() {
       {/* Same measure as the sections above. The photograph column is capped
           rather than fractional, so the section never grows taller than the
           copy needs on a wide screen. */}
-      <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)]">
-        <div className="flex flex-col items-center justify-center px-5 pt-12 pb-9 text-center sm:px-6 sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
+      <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,720px)]">
+        <div className="flex flex-col items-center justify-between lg:mt-18 lg:mb-28 px-5 pt-12 pb-9 text-center sm:px-6 sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
           {/* Cormorant runs optically small, so the display size sits high. */}
-          <h2 className="text-[40px] leading-none font-bold text-ink sm:text-[52px] lg:text-[58px]">
-            Apparel
-          </h2>
+          <div className="flex flex-col items-center sm:items-start">
+            <h2 className="text-[40px] leading-none font-bold font-display text-[#223574] sm:text-[52px] lg:text-[58px]">
+              Apparel
+            </h2>
+            <p className="mt-4 rounded-full border border-2 border-[#C99237] px-5 py-2 text-[12px] font-bold font-display tracking-[0.18em] text-[#C99237] uppercase sm:mt-5 sm:text-[14px] sm:tracking-[0.22em]">
+              Coming soon
+            </p>
+          </div>
 
-          <p className="mt-4 rounded-full border border-gold/70 px-5 py-1.5 text-[12px] font-semibold tracking-[0.18em] text-gold uppercase sm:mt-5 sm:px-6 sm:py-2 sm:text-[14px] sm:tracking-[0.22em]">
-            Coming soon
-          </p>
+          <div className="flex flex-col items-center sm:items-start">
+            <p className="mt-6 max-w-[30ch] text-[17px] leading-relaxed font-semibold text-[#4C5870] sm:mt-7 sm:max-w-[30ch] sm:text-[24px]">
+              Wear your faith. Beautiful Christian-inspired designs that speak
+              hope and truth.
+            </p>
 
-          <p className="mt-6 max-w-[30ch] text-[17px] leading-relaxed font-semibold text-ink/70 sm:mt-7 sm:max-w-[34ch] sm:text-[20px]">
-            Wear your faith. Beautiful Christian-inspired designs that speak
-            hope and truth.
-          </p>
-
-          <div aria-hidden className="mt-7 h-px w-14 bg-gold sm:mt-8 sm:w-16" />
+            <div
+              aria-hidden
+              className="mt-7 h-px w-14 border border-[#C99237] sm:mt-10 sm:w-16"
+            />
+          </div>
 
           {/* The tracking is eased off on a phone so the line still fits on
               one row at 360px. */}
-          <p className="mt-6 text-[11px] font-semibold tracking-[0.1em] text-gold uppercase sm:mt-7 sm:text-[12px] sm:tracking-[0.18em]">
-            One panel, one message. Amenscapes.
+          <p className="mt-6 text-[11px] font-bold font-display tracking-[0.1em] text-[#C99237] uppercase sm:mt-7 sm:text-[12px] sm:tracking-[0.18em]">
+            ONE PANEL. ONE MESSAGE. AMENSCAPES.
           </p>
         </div>
 
@@ -45,12 +51,12 @@ export default function ApparelComingSoon() {
             squash the print. The shadow is drawn unoffset because at that size
             the frame is flush with the top and bottom of the band, so it only
             ever shows down the two sides. */}
-        <div className="relative mx-5 mb-12 aspect-[736/760] rounded-[4px] shadow-[0_0_38px_rgba(21,42,80,0.16)] sm:mx-auto sm:mb-16 sm:w-full sm:max-w-[420px] lg:mx-0 lg:mb-0 lg:aspect-auto lg:h-full lg:max-w-none lg:min-h-[600px] lg:rounded-none">
+        <div className="relative mx-5 mb-12 aspect-[736/760] rounded-[4px] shadow-[0_0_38px_rgba(21,42,80,0.16)] sm:mx-auto sm:mb-16 sm:w-full sm:max-w-[420px] lg:mx-0 lg:mb-0 lg:aspect-auto lg:h-full lg:max-w-none lg:min-h-[760px] lg:rounded-none">
           <Image
             src={PHOTO.src}
             alt={PHOTO.alt}
             fill
-            sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) 420px, 560px"
+            sizes="(max-width: 640px) calc(100vw - 2.5rem), (max-width: 1024px) 420px, 720px"
             className="rounded-[inherit] object-cover object-center"
           />
         </div>
