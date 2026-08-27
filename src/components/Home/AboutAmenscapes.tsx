@@ -93,7 +93,7 @@ export default function AboutAmenscapes() {
           ))}
         </ul>
 
-        <div className="mt-10 rounded-[20px] bg-[#263B7C] px-5 py-8 text-center shadow-[0_18px_50px_rgba(21,42,80,0.18)] sm:mt-11 sm:rounded-[28px] sm:px-10 sm:py-9">
+        <div className="hidden md:block mt-10 rounded-[20px] bg-[#263B7C] px-5 py-8 text-center shadow-[0_18px_50px_rgba(21,42,80,0.18)] sm:mt-11 sm:rounded-[28px] sm:px-10 sm:py-9">
           <p className="text-[11px] font-bold tracking-[0.22em] text-[#FFCD79] uppercase sm:text-[12px]">
             Our mission
           </p>
