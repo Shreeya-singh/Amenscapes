@@ -23,7 +23,13 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    let last: boolean | null = null;
+    const onScroll = () => {
+      const next = window.scrollY > 8;
+      if (next === last) return;
+      last = next;
+      setScrolled(next);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -80,15 +86,24 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!open) return;
+
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setOpen(false);
     };
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+
+    // Scrolling the page dismisses the menu rather than the page being locked.
+    // The threshold swallows the few pixels mobile browsers report when their
+    // address bar collapses, which would otherwise close it immediately.
+    const startY = window.scrollY;
+    const onScroll = () => {
+      if (Math.abs(window.scrollY - startY) > 6) setOpen(false);
+    };
+
     window.addEventListener("keydown", onKey);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
-      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", onKey);
+      window.removeEventListener("scroll", onScroll);
     };
   }, [open]);
 
@@ -103,14 +118,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
+      className={`sticky top-0 z-50 transition-[background-color,border-color,box-shadow] duration-300 ${
         scrolled
           ? "border-b border-ink/10 bg-[#FBF8F2]/85 shadow-[0_8px_30px_rgba(21,42,80,0.10)] backdrop-blur-xl"
           : "border-b border-transparent bg-[#FBF8F2]"
       }`}
     >
       <nav
-        className={`relative mx-auto flex w-full max-w-8xl items-center justify-between gap-3 px-5 transition-all duration-300 sm:px-6 ${
+        className={`relative mx-auto flex w-full max-w-8xl items-center justify-between gap-3 px-5 transition-[height] duration-300 sm:px-6 ${
           scrolled ? "h-[60px] md:h-[68px]" : "h-[68px] md:h-[80px]"
         }`}
       >
@@ -186,13 +201,17 @@ export default function Navbar() {
         </button>
       </nav>
 
+      {/* Overlays the page instead of expanding the sticky header, so opening it
+          doesn't relayout and shift every section below it. Only opacity and
+          transform animate, both of which stay on the compositor. */}
       <div
         id="mobile-nav"
-        className={`border-t bg-[#FBF8F2]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden
+        inert={!open}
+        className={`absolute inset-x-0 top-full max-h-[calc(100svh-60px)] origin-top overflow-y-auto overscroll-contain border-b bg-[#FBF8F2] transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none md:hidden
           ${
             open
-              ? "max-h-[calc(100svh-60px)] overflow-y-auto border-ink/10 opacity-100"
-              : "max-h-0 overflow-hidden border-transparent opacity-0"
+              ? "translate-y-0 border-ink/10 opacity-100 shadow-[0_14px_30px_-10px_rgba(21,42,80,0.25)]"
+              : "pointer-events-none -translate-y-2 border-transparent opacity-0"
           }
           `}
       >
