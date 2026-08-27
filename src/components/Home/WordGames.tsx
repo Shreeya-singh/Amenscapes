@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import NewsletterSignup from "@/components/NewLetterSignup";
+import { WORD_GAMES } from "@/content/WordGames";
 
 export default function WordGames() {
   return (
@@ -24,7 +25,7 @@ export default function WordGames() {
             />
 
             <h1 className="mt-[0.5em] max-w-[7.2em] font-display text-[2.15em] leading-[1.12] font-bold text-balance text-[#223574] sm:text-[2.85em] sm:leading-[1.1] lg:text-[3.5em]">
-              Faith-Filled Word Search & Puzzle Books
+              {WORD_GAMES.heading}
             </h1>
 
             <Image
@@ -37,8 +38,7 @@ export default function WordGames() {
             />
 
             <p className="mt-[1.1em] max-w-[32ch] text-[1.08em] leading-snug font-medium text-pretty text-[#223574] sm:text-[1.25em] lg:text-[1.7em]">
-              Inspiring word searches and puzzles that illuminate God&apos;s
-              Word.
+              {WORD_GAMES.body}
             </p>
 
             <NewsletterSignup />
@@ -48,7 +48,7 @@ export default function WordGames() {
         <div className="relative w-full lg:hidden">
           <Image
             src="/WordGames/HeroSection.png"
-            alt="Two Bible WordaLight puzzle books standing on a table"
+            alt={WORD_GAMES.heroAlt}
             width={1440}
             height={760}
             className="h-[62vw] max-h-[340px] min-h-[210px] w-full object-cover object-[62%_center]"

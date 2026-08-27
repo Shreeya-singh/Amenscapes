@@ -1,3 +1,5 @@
+**Changing website words (no coding):** see [EDITING-COPY.md](./EDITING-COPY.md). All copy lives in `src/content/`. Save a file, then refresh http://localhost:3000.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Playfair_Display } from "next/font/google";
+import { SITE } from "@/content/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Amenscapes",
-  description: "Amenscape is a platform for creating and sharing your own landscapes",
+  title: SITE.title,
+  description: SITE.description,
 };
 
 const cormorant = Cormorant_Garamond({

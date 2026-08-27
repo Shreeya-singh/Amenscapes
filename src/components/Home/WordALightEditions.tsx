@@ -1,37 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const PLAY_HREF = "#";
-const GUMROAD_HREF = "#";
-
-type Edition = {
-  title: string;
-  blurb: string;
-  src: string;
-  width: number;
-  height: number;
-  href?: string;
-  cta?: string;
-};
-
-const EDITIONS: Edition[] = [
-  {
-    title: "Traditional",
-    blurb: "Classic ornate\nedition.",
-    src: "/WordALight/bible_Left.png",
-    width: 300,
-    height: 451,
-    href: GUMROAD_HREF,
-    cta: "Buy eBook on Gumroad",
-  },
-  {
-    title: "Minimal / Baptist",
-    blurb: "Clean minimal\nedition.",
-    src: "/WordALight/bible_Right.png",
-    width: 300,
-    height: 451,
-  },
-];
+import { WORDALIGHT, type Edition } from "@/content/WordALightEditions";
 
 function EditionCard({
   title,
@@ -47,7 +16,7 @@ function EditionCard({
       <div className="relative">
         <Image
           src={src}
-          alt={`WordaLight — ${title} edition`}
+          alt={WORDALIGHT.editionAlt(title)}
           width={width}
           height={height}
           sizes="(max-width: 640px) 50vw, (max-width: 1280px) 210px, (max-width: 1536px) 240px, 270px"
@@ -80,7 +49,7 @@ function EditionCard({
           </Link>
         ) : (
           <p className="mt-5 inline-flex min-h-11 items-center justify-center rounded-full border-2 border-[#C99237] px-4 py-3 text-[12px] sm:mt-6 font-bold font-display tracking-[0.18em] whitespace-nowrap text-[#C99237] uppercase sm:text-[14px]">
-            Coming soon
+            {WORDALIGHT.comingSoon}
           </p>
         )}
       </div>
@@ -102,7 +71,7 @@ export default function WordALightEditions() {
             className="h-auto w-[38px] sm:w-[54px] lg:w-[78px]"
           />
           <h2 className="font-display text-[26px] leading-none font-bold tracking-[0.04em] text-[#223574] uppercase sm:text-[36px] lg:text-[46px]">
-            WordaLight
+            {WORDALIGHT.heading}
           </h2>
           <Image
             src="/WordALight/VectorRight.png"
@@ -115,21 +84,21 @@ export default function WordALightEditions() {
         </div>
 
         <p className="mx-auto mt-2 max-w-[26ch] text-center text-[17px] leading-snug font-semibold text-[#223574]/70 sm:max-w-none sm:text-[19px]">
-          Discover God&apos;s Word, one puzzle at a time.
+          {WORDALIGHT.tagline}
         </p>
 
         <div className="mt-3 flex justify-center">
           <Link
-            href={PLAY_HREF}
+            href={WORDALIGHT.playHref}
             className="inline-flex min-h-11 items-center rounded-full bg-[#223574] px-7 py-3 text-[16px] font-bold text-[#FFCD79] underline underline-offset-4 sm:px-5 sm:py-3 sm:text-[17px] transition-transform hover:scale-[1.04] border-2 border-[#C99237] lg:text-[20px]"
           >
-            Try the game NOW!
+            {WORDALIGHT.playCta}
           </Link>
         </div>
       
 
         <div className="mt-8 flex flex-col items-stretch gap-5 sm:mt-14 sm:gap-8 xl:flex-row xl:items-center xl:gap-8 2xl:gap-10">
-          <EditionCard {...EDITIONS[0]} />
+          <EditionCard {...WORDALIGHT.editions[0]} />
 
           <Image
             src="/WordALight/VectorCenter.png"
@@ -140,7 +109,7 @@ export default function WordALightEditions() {
             className="mx-auto h-auto w-[34px] shrink-0 sm:w-[56px] xl:w-[64px] 2xl:w-[76px]"
           />
 
-          <EditionCard {...EDITIONS[1]} />
+          <EditionCard {...WORDALIGHT.editions[1]} />
         </div>
       </div>
     </section>

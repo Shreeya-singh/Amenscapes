@@ -79,3 +79,17 @@ body {
     );
   }
 }
+
+/* Chrome repaints autofilled inputs with its own opaque blue, which hides the
+   translucent pill and its border. It animates that background in, so an
+   effectively infinite transition leaves the field's own styling in place. */
+.autofill-quiet:-webkit-autofill,
+.autofill-quiet:-webkit-autofill:hover,
+.autofill-quiet:-webkit-autofill:focus,
+.autofill-quiet:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--color-ink);
+  caret-color: var(--color-ink);
+  transition:
+    background-color 600000s 0s,
+    color 600000s 0s;
+}

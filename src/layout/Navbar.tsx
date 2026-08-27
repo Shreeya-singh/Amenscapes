@@ -4,14 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const links = [
-  { href: "/", label: "Home", id: "" },
-  { href: "/#wordalight", label: "WordaLight", id: "wordalight" },
-  { href: "/#bentobox", label: "BentoBox", id: "bentobox" },
-  { href: "/#t-shirt", label: "T-Shirts", id: "t-shirt" },
-  { href: "/#About", label: "About", id: "About" },
-] as const;
+import { NAVBAR } from "@/content/Navbar";
 
 function isLinkActive(
   href: string,
@@ -42,7 +35,7 @@ export default function Navbar() {
       return;
     }
 
-    const sections = links
+    const sections = NAVBAR.links
       .map((link) => link.id)
       .filter(Boolean)
       .map((id) => document.getElementById(id))
@@ -128,7 +121,7 @@ export default function Navbar() {
           <span className="flex items-end gap-2">
             <Image
               src="/Navbar/NavbarLogo.png"
-              alt="Amenscapes"
+              alt={NAVBAR.logoAlt}
               width={150}
               height={40}
               className="h-8 w-auto object-contain md:h-10"
@@ -138,7 +131,7 @@ export default function Navbar() {
         </Link>
 
         <ul className="hidden items-center gap-2 md:flex lg:gap-8">
-          {links.map((link) => {
+          {NAVBAR.links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
             return (
               <li key={link.href}>
@@ -170,7 +163,7 @@ export default function Navbar() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={open ? NAVBAR.closeMenu : NAVBAR.openMenu}
           className="-mr-1 flex size-11 shrink-0 items-center justify-center rounded-xl text-ink outline-none transition-colors hover:bg-ink/5 focus-visible:ring-2 focus-visible:ring-ink/40 md:hidden"
         >
           <span className="relative block h-4 w-5">
@@ -204,7 +197,7 @@ export default function Navbar() {
           `}
       >
         <ul className="mx-auto flex w-full max-w-[1100px] flex-col gap-1 px-5 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] sm:px-6">
-          {links.map((link) => {
+          {NAVBAR.links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
             return (
               <li key={link.href}>
@@ -225,11 +218,11 @@ export default function Navbar() {
           })}
           <li>
             <Link
-              href="/#signup"
+              href={NAVBAR.signupHref}
               onClick={() => setOpen(false)}
               className="mt-1 block rounded-xl bg-ink px-4 py-3 text-center text-[13px] font-semibold tracking-[0.14em] text-white uppercase"
             >
-              Sign up with email
+              {NAVBAR.signup}
             </Link>
           </li>
         </ul>

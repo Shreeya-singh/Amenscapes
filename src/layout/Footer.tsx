@@ -1,37 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-const COLUMNS = [
-  {
-    heading: "Shop",
-    links: [
-      { label: "Wordalight", href: "/#wordalight" },
-      { label: "Bentobox", href: "/#bentobox" },
-      { label: "T-Shirts", href: "/#t-shirt" },
-    ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "About Us", href: "/#About" },
-      { label: "Our Mission", href: "/#About" },
-      { label: "Contact", href: "#" },
-    ],
-  },
-  {
-    heading: "Support",
-    links: [
-      { label: "FAQ", href: "#" },
-      { label: "Shipping & Returns", href: "#" },
-      { label: "Privacy Policy", href: "#" },
-    ],
-  },
-] as const;
-
-const SOCIALS = [
-  { label: "Instagram", href: "#" },
-  { label: "Facebook", href: "#" },
-  { label: "Email", href: "#" },
-] as const;
+import { FOOTER } from "@/content/Footer";
 
 const linkClass =
   "inline-block py-1.5 text-[15px] font-medium text-[#5D606A] underline-offset-4 outline-none transition-colors hover:text-[#5D606A] hover:underline focus-visible:ring-2 focus-visible:ring-[#223574]/40 sm:py-1 sm:text-[17px]";
@@ -49,7 +18,7 @@ export default function Footer() {
           >
             <Image
               src="/Footer/Footer_Logo.png"
-              alt="Amenscapes"
+              alt={FOOTER.logoAlt}
               width={120}
               height={63}
               sizes="120px"
@@ -58,13 +27,12 @@ export default function Footer() {
           </Link>
 
           <p className="max-w-[42ch] text-center text-[15px] leading-relaxed font-medium text-[#5D606A] sm:text-[17px] lg:text-left">
-            Creating faith-filled puzzles and books that inspire hearts and
-            minds through God&apos;s Word.
+            {FOOTER.blurb}
           </p>
         </div>
 
         <div className="grid grid-cols-2 gap-x-6 gap-y-7 sm:grid-cols-3 sm:gap-x-8 sm:gap-y-8 sm:px-6 lg:flex lg:flex-1 lg:justify-between lg:gap-16 lg:pr-10">
-          {COLUMNS.map((column) => (
+          {FOOTER.columns.map((column) => (
             <nav
               key={column.heading}
               aria-label={column.heading}
@@ -84,10 +52,10 @@ export default function Footer() {
           ))}
         </div>
 
-        <nav aria-label="Follow Us" className="min-w-0 lg:shrink-0">
-          <h2 className={headingClass}>Follow Us</h2>
+        <nav aria-label={FOOTER.socialsHeading} className="min-w-0 lg:shrink-0">
+          <h2 className={headingClass}>{FOOTER.socialsHeading}</h2>
           <ul className="mt-2 flex flex-row flex-wrap items-center gap-x-5 gap-y-1 lg:flex-nowrap">
-            {SOCIALS.map((social) => (
+            {FOOTER.socials.map((social) => (
               <li key={social.label}>
                 <Link href={social.href} className={linkClass}>
                   {social.label}
@@ -104,7 +72,7 @@ export default function Footer() {
           <span className="h-px flex-1 bg-[#E6DBC8]" />
         </div>
         <p className="py-5 text-center text-[13px] font-medium text-[#5D606A] sm:text-[16px]">
-          © {new Date().getFullYear()} Amenscapes. All rights reserved.
+          {FOOTER.copyright(new Date().getFullYear())}
         </p>
       </div>
     </footer>
