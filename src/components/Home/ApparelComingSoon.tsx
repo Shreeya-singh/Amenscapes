@@ -9,7 +9,7 @@ export default function ApparelComingSoon() {
   return (
     <section id="t-shirt" className="bg-[#F7F0E7]">
       <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[minmax(0,1fr)_minmax(0,720px)]">
-        <div className="flex flex-col items-center justify-between lg:mt-18 lg:mb-36 px-5 pt-12 pb-9 text-center sm:px-6 sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
+        <div className="flex flex-col items-center justify-between lg:mt-18 lg:mb-36 pt-12 pb-9 text-center sm:pt-16 sm:pb-12 lg:items-start lg:py-20 lg:pr-14 lg:text-left">
           <div className="flex flex-col items-center sm:items-start">
             <h2 className="text-[34px] leading-none font-bold font-display text-[#223574] sm:text-[52px] lg:text-[58px]">
               Apparel
