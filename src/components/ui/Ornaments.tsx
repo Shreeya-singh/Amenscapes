@@ -1,9 +1,3 @@
-/**
- * Gold line-art shared by the editorial sections. Everything draws in
- * `currentColor`, so colour comes from the caller (`text-gold`).
- */
-
-/** A cross with flared arms, drawn at the centre of the wide ornaments. */
 export function Cross({ top, bottom }: { top: number; bottom: number }) {
   const arm = top + (bottom - top) * 0.32;
   return (
@@ -14,7 +8,6 @@ export function Cross({ top, bottom }: { top: number; bottom: number }) {
   );
 }
 
-/** The scrolling vine on its own — used either side of a heading. */
 const vine = (
   <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none">
     <path d="M170 31c14 0 20-11 34-13 14-2 25 4 25 12 0 8-9 12-14 7-5-5 0-13 9-12 12 1 21 4 29 5" />
@@ -22,10 +15,6 @@ const vine = (
   </g>
 );
 
-/**
- * Scrolling vine either side of a cross. The right half is drawn once and
- * mirrored, so the two sides stay in step.
- */
 export function ScrollOrnament({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 320 46" className={className} fill="none" aria-hidden>
@@ -40,7 +29,6 @@ export function ScrollOrnament({ className = "" }: { className?: string }) {
   );
 }
 
-/** A long gold rule with diamond terminals and the cross standing on it. */
 export function RuleOrnament({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 320 40" className={className} fill="none" aria-hidden>
@@ -59,10 +47,6 @@ export function RuleOrnament({ className = "" }: { className?: string }) {
   );
 }
 
-/**
- * A single vine, cropped out of `ScrollOrnament`, for flanking a heading.
- * `flip` mirrors it for the left-hand side.
- */
 export function Flourish({
   className = "",
   flip = false,
@@ -83,7 +67,6 @@ export function Flourish({
   );
 }
 
-/** The small cross that sits between the two edition columns. */
 export function CrossMark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="140 0 40 40" className={className} fill="none" aria-hidden>
@@ -92,7 +75,6 @@ export function CrossMark({ className = "" }: { className?: string }) {
   );
 }
 
-/** A small ornate plus, used as a full stop between a heading and its copy. */
 export function PlusMark({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden>
@@ -109,7 +91,6 @@ export function PlusMark({ className = "" }: { className?: string }) {
   );
 }
 
-/** Leaves are one shape, placed twice per node so the sprig stays symmetric. */
 const oliveLeaves = [
   { x: 39, y: 26, r: -68, s: 0.7 },
   { x: 37, y: 41, r: -42, s: 0.85 },
@@ -120,7 +101,6 @@ const oliveLeaves = [
   { x: 32, y: 73, r: 208, s: 0.88 },
 ];
 
-/** A sprig of olive — the quiet sign-off beneath a block of copy. */
 export function OliveBranch({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 96" className={className} fill="none" aria-hidden>

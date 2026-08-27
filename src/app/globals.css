@@ -13,15 +13,12 @@
   --font-display: var(--font-playfair), ui-serif, Georgia, serif;
 }
 
-/* Site theme: blue + white. Use `brand` for surfaces, `brand-ink` for type. */
 @theme {
   --color-brand: #7aaff8;
   --color-brand-ink: #3b82f6;
   --color-brand-deep: #1d4ed8;
 }
 
-/* Tailwind stops at 7xl (80rem); the hero artwork runs wider than the navbar
-   measure it sits under. */
 @theme {
   --container-8xl: 88rem;
   --container-9xl: 96rem;
@@ -30,7 +27,6 @@
   --container-12xl: 120rem;
 }
 
-/* Editorial theme: warm paper + navy type + gold ornament. */
 @theme {
   --color-paper: #fffdfc;
   --color-cream-light: #fbf8f2;
@@ -41,14 +37,8 @@
   --color-gold: #c0954a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 html {
+  color-scheme: light;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -59,11 +49,6 @@ body {
 }
 
 .word-games-background-Images {
-  /* The scrim is listed first so it paints over the photograph. Both layers
-     are the same 1440x760 frame and share one box, so `cover` crops them
-     identically and the wash stays registered to the books behind it. The
-     band's fixed ratio then pins the books to a constant 41% across, which is
-     what lets the copy be sized to clear them at every width. */
   background-image:
     url("/WordGames/HeroSectionOverlap.png"),
     url("/WordGames/HeroSection.png");
@@ -72,12 +57,6 @@ body {
   background-repeat: no-repeat;
 }
 
-/* The crop ends on two hard vertical seams — against cream once the window is
-   wider than the band, against the screen edge below that. Feather both away
-   with an alpha mask so the photo dissolves into the page either way. The ramp
-   is stepped rather than a plain two-stop gradient because a linear one leaves
-   a visible corner where it meets full opacity; these stops approximate an
-   ease, so there is no edge to find. */
 @media (width >= 64rem) {
   .word-games-background-Images {
     --edge: 7rem;
@@ -100,7 +79,3 @@ body {
     );
   }
 }
-
-/* Below lg this layer is not rendered at all: the crop only ever caught bare
-   wall on a portrait band, so the mobile column stacks the photograph under
-   the copy as a real <Image> instead. See components/Home/WordGames.tsx. */

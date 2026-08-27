@@ -7,18 +7,10 @@ type DownloadPDFProps = {
   cancel: () => void;
 };
 
-/* Swapped in where the signup pill was, so it is measured in the same `em` as
-   the pill and inherits the hero's scale root — a px-sized card drifts out of
-   step with the copy once the band starts scaling on lg. It also stays close
-   to the pill's height: this sits mid-hero, and a tall card shoves the
-   artwork below it on the mobile column. */
 export default function DownloadPDF({ status, cancel }: DownloadPDFProps) {
   const already = status === "alreadySubscribed";
   const card = useRef<HTMLDivElement>(null);
 
-  /* The submit button the user just pressed unmounts with the form, dropping
-     focus to <body>. Move it onto the card so the keyboard lands on the
-     download link next, and the swap is announced rather than silent. */
   useEffect(() => {
     card.current?.focus({ preventScroll: true });
   }, []);
@@ -47,7 +39,6 @@ export default function DownloadPDF({ status, cancel }: DownloadPDFProps) {
         </svg>
       </button>
 
-      {/* Clears the close button on the narrowest line the copy can wrap to. */}
       <p className="max-w-[22ch] px-[1.4em] text-center text-[0.95em] leading-snug font-semibold text-balance text-ink">
         {already
           ? "You're already subscribed — here's your puzzle."

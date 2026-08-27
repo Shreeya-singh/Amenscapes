@@ -7,10 +7,6 @@ import DownloadPDF from "./DownloadPDF";
 
 type Status = "idle" | "subscribing" | "success" | "error" | "invalid" | "alreadySubscribed";
 
-/* The field is one pill on every screen, so the prompt has to shorten rather
-   than the pill widen — the full sentence truncates to "Enter email address to
-   down…" under about 480px. Resolved after mount so the server and the first
-   client render agree on the long copy. */
 const PLACEHOLDER_FULL = "Enter email address to download sample puzzle";
 const PLACEHOLDER_SHORT = "Email address for a free puzzle";
 
@@ -69,9 +65,6 @@ export default function NewsletterSignup() {
           onSubmit={handleSubmit}
           className="flex flex-col items-center gap-[0.5em]"
         >
-          {/* Outlined pill from the comps. The arrow is absolutely placed so
-              the placeholder stays optically centred in the field rather than
-              being pushed left by a flex sibling. */}
           <div className="relative w-full rounded-full border-[0.09em] border-ink/70 bg-white/45 transition-colors focus-within:border-ink">
             <label htmlFor="newsletter-email" className="sr-only">
               Email
@@ -101,8 +94,6 @@ export default function NewsletterSignup() {
               aria-label={status === "subscribing" ? "Signing up" : "Sign up"}
               className="absolute top-1/2 right-[0.45em] flex size-[2.1em] -translate-y-1/2 items-center justify-center rounded-full text-gold transition-colors hover:bg-ink/5 hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {/* The arrow alone gives the wait no read beyond a dim button,
-                  and the Beehiiv round-trip runs long enough to look dead. */}
               {status === "subscribing" ? (
                 <svg
                   viewBox="0 0 16 16"

@@ -23,7 +23,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // first check if mail is already subscribed
     const existingRes = await fetch(
       `https://api.beehiiv.com/v2/publications/${publicationId}/subscriptions/by_email/${encodeEmail}`,
       {

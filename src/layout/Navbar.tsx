@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/** `id` is the home-page section each link scrolls to. */
 const links = [
   { href: "/", label: "Home", id: "" },
   { href: "/#wordalight", label: "WordaLight", id: "wordalight" },
@@ -14,9 +13,6 @@ const links = [
   { href: "/#About", label: "About", id: "About" },
 ] as const;
 
-/**
- * On the home page the underline follows the section in view.
- */
 function isLinkActive(
   href: string,
   id: string,
@@ -40,12 +36,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  /**
-   * Highlight the link whose section is currently in view. The section is
-   * measured on each scroll rather than watched with an IntersectionObserver:
-   * the observer only reported sections crossing its band, so scrolling back
-   * up past the last one left that link stuck underlined.
-   */
   useEffect(() => {
     if (pathname !== "/") {
       setActive("");
@@ -63,14 +53,10 @@ export default function Navbar() {
 
     const sync = () => {
       frame = 0;
-      // Near the top we are always on "Home", whatever sits under the line.
       if (window.scrollY < 120) {
         setActive("");
         return;
       }
-      // At the end of the page the last section owns the nav whatever the
-      // measure says: About sits above the footer with too little runway left
-      // to push its own top past the line, so it would never light up.
       const doc = document.documentElement;
       const atBottom =
         window.innerHeight + window.scrollY >= doc.scrollHeight - 2;
@@ -78,7 +64,6 @@ export default function Navbar() {
         setActive(sections[sections.length - 1].id);
         return;
       }
-      // Otherwise, the last section to have crossed 45% of the viewport.
       const line = window.innerHeight * 0.45;
       const current = sections.filter(
         (el) => el.getBoundingClientRect().top <= line,
@@ -100,7 +85,6 @@ export default function Navbar() {
     };
   }, [pathname]);
 
-  // Close the mobile menu on Escape, and hold the page still behind it.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -115,8 +99,6 @@ export default function Navbar() {
     };
   }, [open]);
 
-  // A tap on a link the user is already on, or a resize up to the desktop
-  // layout, both leave the panel open with nothing to close it.
   useEffect(() => setOpen(false), [pathname]);
 
   useEffect(() => {
@@ -139,13 +121,10 @@ export default function Navbar() {
           scrolled ? "h-[60px] md:h-[68px]" : "h-[68px] md:h-[80px]"
         }`}
       >
-        {/* Logo stays on desktop; hidden on mobile. */}
         <Link
           href="/"
           className="flex shrink-0 items-center rounded-lg outline-none transition-transform duration-300 ease-out hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-ink/40"
         >
-          {/* The source logo is a stacked lockup; the mark and wordmark are
-              split so they sit on one line with the nav links. */}
           <span className="flex items-end gap-2">
             <Image
               src="/Navbar/NavbarLogo.png"
@@ -158,7 +137,6 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop links — absolutely centred so the logo stays flush left. */}
         <ul className="hidden items-center gap-2 md:flex lg:gap-8">
           {links.map((link) => {
             const isActive = isLinkActive(link.href, link.id, pathname, active);
@@ -187,18 +165,6 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* <Link
-          href="/#signup"
-          className={`hidden rounded-full border-2 border-white px-5 py-2 text-[14px] font-bold text-white outline-none transition-transform hover:scale-[1.04] focus-visible:ring-2 focus-visible:ring-white/80 md:inline-flex
-          ${scrolled
-            ? "pointer-events-none -translate-y-1 scale-95 opacity-0"
-            : "translate-y-0 scale-100 opacity-100 hover:scale-[1.04]"
-          }`}
-        >
-          Sign up 
-        </Link> */}
-
-        {/* Mobile toggle */}
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
@@ -227,7 +193,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile panel */}
       <div
         id="mobile-nav"
         className={`border-t bg-[#FBF8F2]/95 backdrop-blur-xl transition-[max-height,opacity] duration-300 md:hidden

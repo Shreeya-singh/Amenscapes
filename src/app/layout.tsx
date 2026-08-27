@@ -13,8 +13,6 @@ const cormorant = Cormorant_Garamond({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-/* Display face for the hero headline: the high-contrast Didone the comps are
-   drawn in. Body copy stays on Cormorant. */
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],

@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-/** The three things every Amenscapes product is meant to be. */
 const PILLARS = [
   {
     title: "Drawn from Scripture",
@@ -23,8 +22,6 @@ export default function AboutAmenscapes() {
       className="bg-paper px-5 py-12 sm:px-6 sm:py-16 lg:py-20"
     >
       <div className="mx-auto w-full max-w-6xl">
-        {/* Same lockup as the WordaLight heading above — the gold vectors are
-            the site's own, so the two section titles read as a pair. */}
         <div className="flex items-center justify-center gap-2">
           <Image
             src="/WordALight/VectorLeft.png"
@@ -54,7 +51,6 @@ export default function AboutAmenscapes() {
           solve.
         </p>
 
-        {/* The hero's gold rule, reused as the divider under the lead. */}
         <Image
           src="/WordGames/HeaderMiddleLayer.png"
           alt=""
@@ -64,9 +60,6 @@ export default function AboutAmenscapes() {
           className="mx-auto mt-6 h-auto w-[240px] max-w-full sm:mt-7 sm:w-[360px]"
         />
 
-        {/* Three columns on a wide screen, a single stack on a phone. The
-            crosses read as separators between the columns, so they are hidden
-            in the stack where there is nothing to separate. */}
         <ul className="mt-8 grid gap-6 sm:mt-9 sm:gap-7 lg:grid-cols-3 lg:gap-0">
           {PILLARS.map((pillar, i) => (
             <li
@@ -100,12 +93,6 @@ export default function AboutAmenscapes() {
           ))}
         </ul>
 
-        {/* The footer's "Our Mission" link lands on this section, so the
-            mission is stated outright rather than left to be inferred. It is
-            set on navy — the one dark block on a page of cream — so the eye
-            lands on it last and stops there. The gold is the brighter #FFCD79
-            the WordaLight button already uses on this ground; the ornament
-            gold sits too close to navy to read. */}
         <div className="mt-10 rounded-[20px] bg-[#263B7C] px-5 py-8 text-center shadow-[0_18px_50px_rgba(21,42,80,0.18)] sm:mt-11 sm:rounded-[28px] sm:px-10 sm:py-9">
           <p className="text-[11px] font-bold tracking-[0.22em] text-[#FFCD79] uppercase sm:text-[12px]">
             Our mission
